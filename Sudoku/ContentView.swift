@@ -8,16 +8,41 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var isPresentingNewGame: Bool = true
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        ZStack {
+            // Your main content goes here
+
+            // Background view with a tap gesture recognizer
+            Color.black.opacity(0.3) // Semi-transparent background
+                .edgesIgnoringSafeArea(.all)
+                .onTapGesture {
+                    withAnimation {
+                        isPresentingNewGame.toggle() // Toggle the state
+                    }
+                }
+
+            // Pop-up view
+            
         }
-        .padding()
     }
 }
+
+//struct GameSelectionView: View {
+//    @Binding var isPresented: Bool
+//
+//    var body: some View {
+//        // Your pop-up view content goes here
+//
+//        // Close button or action
+//        Button("Close") {
+//            withAnimation {
+//                isPresented.toggle() // Toggle the state to close the pop-up
+//            }
+//        }
+//    }
+//}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

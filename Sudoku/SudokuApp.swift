@@ -12,7 +12,7 @@ struct SudokuApp: App {
     @StateObject var storageObject = StorageObject()
     var body: some Scene {
         WindowGroup {
-            MainView()
+            FrontView()
                 .environmentObject(storageObject)
         }
     }

@@ -26,6 +26,8 @@ struct ModiferView: View {
                 }else{
                     if currX != -1 && currY != -1 {
                         storageObject.currArray[currX][currY] = -1
+                        storageObject.errorTextMap[currX][currY] = false
+                        storageObject.fillCell(x: currX, y: currY)
                     }
                 }
                 

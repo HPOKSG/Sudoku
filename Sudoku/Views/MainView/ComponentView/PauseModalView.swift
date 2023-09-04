@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PauseModalView: View {
+    @EnvironmentObject var storageObject :StorageObject
     @Binding var isPlaying: Bool
     var body: some View {
         ZStack{
@@ -31,7 +32,7 @@ struct PauseModalView: View {
                                     .bold()
                                     .padding(.bottom,5)
                                 
-                                Text("20:58")
+                                Text(storageObject.convertToTimer())
                                     .bold()
                                     .font(.title3)
                             }
@@ -42,7 +43,7 @@ struct PauseModalView: View {
                                     .bold()
                                     .padding(.bottom,5)
                                 
-                                Text("1/10")
+                                Text("\(StorageObject.currMistake)/\(storageObject.maxAttemp)")
                                     .bold()
                                     .font(.title3)
                             }
@@ -52,7 +53,7 @@ struct PauseModalView: View {
                                     .foregroundColor(Color("gray"))
                                     .bold()
                                     .padding(.bottom,5)
-                                Text("Easy")
+                                Text("\(storageObject.mode.rawValue.capitalized)")
                                     .bold()
                                     .font(.title3)
                             }
@@ -83,6 +84,7 @@ struct PauseModalView: View {
 struct PauseModalView_Previews: PreviewProvider {
     static var previews: some View {
         PauseModalView(isPlaying: .constant(true))
+            .environmentObject(StorageObject())
     }
 }
 
