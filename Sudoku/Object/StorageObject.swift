@@ -36,6 +36,13 @@ class StorageObject : ObservableObject{
         }
     }
     
+    @Published var gameStatus : GameStatus{
+        didSet{
+            Self.gameStatusStorage = gameStatus.rawValue
+        }
+    }
+    
+    
     @Published var mode: GameMode{
         didSet{
             if mode == .easy{
@@ -49,13 +56,11 @@ class StorageObject : ObservableObject{
         }
     }
     
-    @Published var gameStatus : GameStatus{
+    @Published var theme: Bool{
         didSet{
-            Self.gameStatusStorage = gameStatus.rawValue
+            Self.isLightTheme = theme
         }
     }
-    
-    
     
     @AppStorage ("gameModeStorage") static var gameModeStorage = ""
     
@@ -112,6 +117,8 @@ class StorageObject : ObservableObject{
         mode = GameMode.getGameMode(Self.gameModeStorage)
         
         gameStatus = GameStatus.getGameStatus(Self.gameStatusStorage)
+        
+        theme = Self.isLightTheme
         
         if Self.noteStorageArrayAppStorage.count > 0{
             noteStorageArray = Self.noteStorageArrayAppStorage.convertStringToNestedArrayComplex()
@@ -202,19 +209,10 @@ class StorageObject : ObservableObject{
                 }
             }
         }
-        shadedMap[x][y] = "shaded"
+        shadedMap[x][y] = "highlight"
         
-        for row in 0..<9 {
-            for col in 0..<9{
-                if currArray[row][col] != -1 {
-                    if (currArray[row][col] != preFilledArray[row][col]) && !isValidMove(){
-                        errorTextMap[row][col] = true
-                    }else {
-                        errorTextMap[row][col] = false
-                    }
-                }
-            }
-        }
+        errorTextMap[x][y] = true
+    
     }
     func setUpGame(mode: GameMode, map: String){
         self.mode = mode
@@ -224,6 +222,10 @@ class StorageObject : ObservableObject{
         Self.currPoint = 0
         
         Self.currMistake = 0
+        
+        Self.gameStatusStorage = GameStatus.isPlaying.rawValue
+        
+        Self.secondElapsedStorage = 0
         
         gameStatus = .isPlaying
         
@@ -250,9 +252,13 @@ class StorageObject : ObservableObject{
         currArray = map.convertStringToNestedArray()
     }
     
+    func setGameStatus(_ value: GameStatus){
+        Self.gameStatusStorage = value.rawValue
+    }
+    
     func convertToTimer() -> String{
-        let minute: Int = secondsElapsed/60
-        let second: Int = secondsElapsed%60
+        let minute: Int = Self.secondElapsedStorage/60
+        let second: Int =  Self.secondElapsedStorage%60
         
         let minuteInString = minute >= 10 ? String(minute) : "0\(minute)"
         let secondInstring = second >= 10 ? String(second) : "0\(second)"
@@ -260,9 +266,26 @@ class StorageObject : ObservableObject{
         return  "\(minuteInString):\(secondInstring)"
     }
     func getCurrentGameStatus() -> GameStatus{
-        return GameStatus.getGameStatus(Self.gameModeStorage)
+        return GameStatus.getGameStatus(Self.gameStatusStorage)
     }
-   
+    func isWinning(){
+        for i in 0..<9{
+            for j in 0..<9{
+                if currArray[i][j] == -1{return}
+            }
+        }
+        if isValidMove(){
+            gameStatus = .won
+        }
+    }
+    
+    func isLoosing(){
+       
+        if (Self.currMistake == self.maxAttemp){
+           
+            gameStatus = .lost
+        }
+    }
 }
 
 enum GameMode : String{
@@ -274,6 +297,7 @@ enum GameMode : String{
         }else if mode == GameMode.hard.rawValue{
             return .hard
         }
+        let _ = print ("return none")
         return .none
     }
     
@@ -287,14 +311,17 @@ enum GameStatus: String{
         if status == GameStatus.isPlaying.rawValue{
             return .isPlaying
         }else if status == GameStatus.won.rawValue{
-            return .isPlaying
+            return .won
         }else if status == GameStatus.lost.rawValue{
-            return .isPlaying
+            return .lost
+        }else if status == GameStatus.pause.rawValue{
+            return .pause
         }
         return .none
     }
     
-    case isPlaying = "isPlaing"
+    case isPlaying = "isPlaying"
+    case pause = "pause"
     case won = "won"
     case lost = "lost"
     case none = "Unknown"

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HeaderView: View {
     @EnvironmentObject var storageObject: StorageObject
-    @Binding var isPlaying: Bool
     @State private var timer  = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         HStack{
@@ -42,26 +41,23 @@ struct HeaderView: View {
                         .onReceive(timer){ firedDate in
                             storageObject.secondsElapsed += 1
                         }
+                        .frame(width: 65)
+                       
                 }
                 .foregroundColor(Color(hex: 0x6F7785))
-                
+
                 Button {
-                    isPlaying.toggle()
-                    if (isPlaying == true){
-                        timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-                    }else{
-                        timer.upstream.connect().cancel()
-                    }
+                    storageObject.gameStatus = storageObject.gameStatus == .isPlaying ? .pause : .isPlaying
                 } label: {
-                    Image(systemName: isPlaying ?   "pause.circle.fill": "play.circle.fill" )
+                    Image(systemName: storageObject.gameStatus == .isPlaying ?   "pause.circle.fill": "play.circle.fill" )
                         .foregroundColor(Color(hex: 0x6F7785).opacity(0.6))
                         .font(.title)
                 }
 
             }
         }
-        .onChange(of: isPlaying, perform: { newValue in
-            if (isPlaying == true){
+        .onChange(of: StorageObject.gameStatusStorage, perform: { newValue in
+            if (storageObject.gameStatus == .isPlaying){
                 timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
             }else{
                 timer.upstream.connect().cancel()
@@ -74,7 +70,7 @@ struct HeaderView: View {
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderView(isPlaying: .constant(true))
+        HeaderView()
             .environmentObject(StorageObject())
     }
 }

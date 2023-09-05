@@ -10,6 +10,8 @@
 		991150482A964AAD00285E6E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991150472A964AAD00285E6E /* MainView.swift */; };
 		9911504B2A9651D300285E6E /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9911504A2A9651D300285E6E /* CellView.swift */; };
 		991150512A965D0B00285E6E /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991150502A965D0B00285E6E /* GridView.swift */; };
+		992D3AE22AA734A500FEE771 /* UserSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D3AE12AA734A500FEE771 /* UserSignUpView.swift */; };
+		992D3AE42AA742F400FEE771 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D3AE32AA742F400FEE771 /* AppView.swift */; };
 		9933326A2A9E779500DDBEE9 /* PauseModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993332692A9E779500DDBEE9 /* PauseModalView.swift */; };
 		9935D1EE2AA056A50092585C /* SudokuSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935D1ED2AA056A50092585C /* SudokuSolution.swift */; };
 		9935D1F02AA064DE0092585C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935D1EF2AA064DE0092585C /* Helper.swift */; };
@@ -22,6 +24,16 @@
 		99ACE6452A972DD400F56D15 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ACE6442A972DD400F56D15 /* HeaderView.swift */; };
 		99ACE64B2A97B67600F56D15 /* StorageObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ACE64A2A97B67600F56D15 /* StorageObject.swift */; };
 		99ACE64D2A97CDB500F56D15 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ACE64C2A97CDB500F56D15 /* ErrorView.swift */; };
+		99AEFB7F2AA646E7009F8690 /* VictoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB7E2AA646E7009F8690 /* VictoryView.swift */; };
+		99AEFB822AA6613A009F8690 /* ThemeSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB812AA6613A009F8690 /* ThemeSettingView.swift */; };
+		99AEFB892AA674CE009F8690 /* SettingAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB882AA674CE009F8690 /* SettingAppView.swift */; };
+		99AEFB8B2AA675CC009F8690 /* SoundDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB8A2AA675CC009F8690 /* SoundDataStorage.swift */; };
+		99AEFB8D2AA6F55D009F8690 /* UserDetailStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB8C2AA6F55D009F8690 /* UserDetailStorage.swift */; };
+		99AEFB8F2AA6FE92009F8690 /* UserHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB8E2AA6FE92009F8690 /* UserHistory.swift */; };
+		99AEFB922AA700DB009F8690 /* TopUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB912AA700DB009F8690 /* TopUserView.swift */; };
+		99AEFB942AA700FC009F8690 /* StatsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB932AA700FC009F8690 /* StatsDetailView.swift */; };
+		99AEFB962AA7168A009F8690 /* StatTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB952AA7168A009F8690 /* StatTabBarView.swift */; };
+		99AEFB982AA71A1D009F8690 /* UserItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AEFB972AA71A1D009F8690 /* UserItemView.swift */; };
 		99C62C652AA4C3BF002D5B53 /* GameSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99C62C642AA4C3BF002D5B53 /* GameSelectionView.swift */; };
 		99EB5BCB2A95022800B6A4E6 /* SudokuApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5BCA2A95022800B6A4E6 /* SudokuApp.swift */; };
 		99EB5BCD2A95022800B6A4E6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99EB5BCC2A95022800B6A4E6 /* ContentView.swift */; };
@@ -53,6 +65,8 @@
 		991150472A964AAD00285E6E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9911504A2A9651D300285E6E /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		991150502A965D0B00285E6E /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
+		992D3AE12AA734A500FEE771 /* UserSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpView.swift; sourceTree = "<group>"; };
+		992D3AE32AA742F400FEE771 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		993332692A9E779500DDBEE9 /* PauseModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseModalView.swift; sourceTree = "<group>"; };
 		9935D1ED2AA056A50092585C /* SudokuSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuSolution.swift; sourceTree = "<group>"; };
 		9935D1EF2AA064DE0092585C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -65,6 +79,16 @@
 		99ACE6442A972DD400F56D15 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		99ACE64A2A97B67600F56D15 /* StorageObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageObject.swift; sourceTree = "<group>"; };
 		99ACE64C2A97CDB500F56D15 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		99AEFB7E2AA646E7009F8690 /* VictoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VictoryView.swift; sourceTree = "<group>"; };
+		99AEFB812AA6613A009F8690 /* ThemeSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeSettingView.swift; sourceTree = "<group>"; };
+		99AEFB882AA674CE009F8690 /* SettingAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingAppView.swift; sourceTree = "<group>"; };
+		99AEFB8A2AA675CC009F8690 /* SoundDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundDataStorage.swift; sourceTree = "<group>"; };
+		99AEFB8C2AA6F55D009F8690 /* UserDetailStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailStorage.swift; sourceTree = "<group>"; };
+		99AEFB8E2AA6FE92009F8690 /* UserHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHistory.swift; sourceTree = "<group>"; };
+		99AEFB912AA700DB009F8690 /* TopUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopUserView.swift; sourceTree = "<group>"; };
+		99AEFB932AA700FC009F8690 /* StatsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsDetailView.swift; sourceTree = "<group>"; };
+		99AEFB952AA7168A009F8690 /* StatTabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatTabBarView.swift; sourceTree = "<group>"; };
+		99AEFB972AA71A1D009F8690 /* UserItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemView.swift; sourceTree = "<group>"; };
 		99C62C642AA4C3BF002D5B53 /* GameSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSelectionView.swift; sourceTree = "<group>"; };
 		99EB5BC72A95022800B6A4E6 /* Sudoku.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sudoku.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		99EB5BCA2A95022800B6A4E6 /* SudokuApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuApp.swift; sourceTree = "<group>"; };
@@ -106,6 +130,8 @@
 		991150432A96383F00285E6E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				99AEFB902AA700B9009F8690 /* StatisticiView */,
+				99AEFB802AA6611C009F8690 /* SettingView */,
 				9935D1F32AA0A7040092585C /* FrontView */,
 				991150492A9651B700285E6E /* MainView */,
 			);
@@ -127,6 +153,9 @@
 				99ACE64A2A97B67600F56D15 /* StorageObject.swift */,
 				9935D1F12AA09F4B0092585C /* GameDataStorage.swift */,
 				997B73052AA5CFF800066AA5 /* ProtocolHelper.swift */,
+				99AEFB8A2AA675CC009F8690 /* SoundDataStorage.swift */,
+				99AEFB8C2AA6F55D009F8690 /* UserDetailStorage.swift */,
+				99AEFB8E2AA6FE92009F8690 /* UserHistory.swift */,
 			);
 			path = Object;
 			sourceTree = "<group>";
@@ -139,6 +168,7 @@
 				9935D1E92AA0495B0092585C /* ComponentView */,
 				9935D1EA2AA049910092585C /* GridView */,
 				997B73032AA5C4FF00066AA5 /* GameOverView.swift */,
+				99AEFB7E2AA646E7009F8690 /* VictoryView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -168,8 +198,29 @@
 			children = (
 				9935D1F42AA0A79E0092585C /* FrontView.swift */,
 				99C62C642AA4C3BF002D5B53 /* GameSelectionView.swift */,
+				992D3AE12AA734A500FEE771 /* UserSignUpView.swift */,
 			);
 			path = FrontView;
+			sourceTree = "<group>";
+		};
+		99AEFB802AA6611C009F8690 /* SettingView */ = {
+			isa = PBXGroup;
+			children = (
+				99AEFB812AA6613A009F8690 /* ThemeSettingView.swift */,
+				99AEFB882AA674CE009F8690 /* SettingAppView.swift */,
+			);
+			path = SettingView;
+			sourceTree = "<group>";
+		};
+		99AEFB902AA700B9009F8690 /* StatisticiView */ = {
+			isa = PBXGroup;
+			children = (
+				99AEFB912AA700DB009F8690 /* TopUserView.swift */,
+				99AEFB932AA700FC009F8690 /* StatsDetailView.swift */,
+				99AEFB952AA7168A009F8690 /* StatTabBarView.swift */,
+				99AEFB972AA71A1D009F8690 /* UserItemView.swift */,
+			);
+			path = StatisticiView;
 			sourceTree = "<group>";
 		};
 		99EB5BBE2A95022800B6A4E6 = {
@@ -199,6 +250,7 @@
 				991150432A96383F00285E6E /* Views */,
 				991150452A96384C00285E6E /* Helper */,
 				99EB5BCA2A95022800B6A4E6 /* SudokuApp.swift */,
+				992D3AE32AA742F400FEE771 /* AppView.swift */,
 				99EB5BCC2A95022800B6A4E6 /* ContentView.swift */,
 				99EB5BCE2A95022E00B6A4E6 /* Assets.xcassets */,
 				99EB5BD02A95022E00B6A4E6 /* Preview Content */,
@@ -361,24 +413,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99AEFB922AA700DB009F8690 /* TopUserView.swift in Sources */,
 				9911504B2A9651D300285E6E /* CellView.swift in Sources */,
 				9935D1F02AA064DE0092585C /* Helper.swift in Sources */,
 				9933326A2A9E779500DDBEE9 /* PauseModalView.swift in Sources */,
 				99ACE64B2A97B67600F56D15 /* StorageObject.swift in Sources */,
 				99EB5BCD2A95022800B6A4E6 /* ContentView.swift in Sources */,
+				99AEFB822AA6613A009F8690 /* ThemeSettingView.swift in Sources */,
 				9935D1F22AA09F4B0092585C /* GameDataStorage.swift in Sources */,
+				992D3AE42AA742F400FEE771 /* AppView.swift in Sources */,
+				99AEFB8B2AA675CC009F8690 /* SoundDataStorage.swift in Sources */,
 				99ACE6432A9729F400F56D15 /* ModiferView.swift in Sources */,
+				99AEFB982AA71A1D009F8690 /* UserItemView.swift in Sources */,
 				991150482A964AAD00285E6E /* MainView.swift in Sources */,
 				99ACE64D2A97CDB500F56D15 /* ErrorView.swift in Sources */,
 				9935D1EE2AA056A50092585C /* SudokuSolution.swift in Sources */,
 				991150512A965D0B00285E6E /* GridView.swift in Sources */,
 				99EB5BCB2A95022800B6A4E6 /* SudokuApp.swift in Sources */,
 				99C62C652AA4C3BF002D5B53 /* GameSelectionView.swift in Sources */,
+				99AEFB892AA674CE009F8690 /* SettingAppView.swift in Sources */,
+				99AEFB8D2AA6F55D009F8690 /* UserDetailStorage.swift in Sources */,
 				99ACE6412A9725FD00F56D15 /* NumberView.swift in Sources */,
+				99AEFB7F2AA646E7009F8690 /* VictoryView.swift in Sources */,
 				9935D1F52AA0A79E0092585C /* FrontView.swift in Sources */,
+				99AEFB942AA700FC009F8690 /* StatsDetailView.swift in Sources */,
 				997B73062AA5CFF800066AA5 /* ProtocolHelper.swift in Sources */,
+				99AEFB8F2AA6FE92009F8690 /* UserHistory.swift in Sources */,
+				99AEFB962AA7168A009F8690 /* StatTabBarView.swift in Sources */,
 				997B73042AA5C4FF00066AA5 /* GameOverView.swift in Sources */,
 				99ACE6452A972DD400F56D15 /* HeaderView.swift in Sources */,
+				992D3AE22AA734A500FEE771 /* UserSignUpView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

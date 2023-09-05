@@ -12,7 +12,6 @@ struct GameSelectionView: View {
     @Binding var isPresentingNewGame: Bool
     let levels: [String] = ["easy","medium","hard"]
     var body: some View {
-       
             List(levels, id: \.self) { level in
                 Section {
                     if let maps = gameMap[level]{
@@ -21,8 +20,6 @@ struct GameSelectionView: View {
                                 MainView()
                                     .onAppear{
                                         isPresentingNewGame.toggle()
-                                        print(maps[index])
-                                        print(maps[index])
                                         storageObject.setUpGame(mode: getMode(level), map: maps[index])
                                     }
                             }
@@ -31,10 +28,12 @@ struct GameSelectionView: View {
                 } header: {
                     Text(level)
                 }
-
+                
+                
+            }
+            .frame(width: 360, height: 280)
+            .clipShape(RoundedRectangle(cornerRadius: 15))
             
-        }
-            .frame(width: 400, height: 300)
         
         
     }

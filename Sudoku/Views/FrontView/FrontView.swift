@@ -10,6 +10,8 @@ import SwiftUI
 struct FrontView: View {
     @EnvironmentObject var storageObject : StorageObject
     @State private var isPresentingNewGame: Bool = false
+    @State private var isPresentingThemeController: Bool = false
+   
     var body: some View {
         NavigationStack {
             ZStack{
@@ -46,7 +48,7 @@ struct FrontView: View {
                     // Your main content goes here
                     // Background view with a tap gesture recognizer
                     if isPresentingNewGame{
-                        Color.black.opacity(0.0001) // Semi-transparent background
+                        Color.black.opacity(0.3) // Semi-transparent background
                             .edgesIgnoringSafeArea(.all)
                             .onTapGesture {
                                 withAnimation {
@@ -58,8 +60,11 @@ struct FrontView: View {
                     GameSelectionView(isPresentingNewGame: $isPresentingNewGame)
                         .offset(y: isPresentingNewGame ? 200 : UIScreen.main.bounds.height)
                 }
-                SettingView()
+            
+                SettingView(isPresentingThemeController: $isPresentingThemeController)
                 
+                ThemeSettingView()
+                    .offset(y: isPresentingThemeController ? -290 : -(UIScreen.main.bounds.height))
             }
         }
     }
@@ -69,6 +74,9 @@ struct FrontView_Previews: PreviewProvider {
     static var previews: some View {
         FrontView()
             .environmentObject(StorageObject())
+            .environmentObject(SoundDataStorage())
+            .environmentObject(UserHistory())
+        
     }
 }
 
@@ -131,29 +139,50 @@ struct NewGameButtonView: View {
     }
 }
 struct SettingView: View {
+    @Binding var isPresentingThemeController: Bool
     var body: some View {
-        VStack{
-            HStack(spacing:20){
+            VStack{
+                HStack(spacing:20){
+                    Spacer()
+                    Button {
+                        isPresentingThemeController.toggle()
+                    } label: {
+                        Image(systemName: "paintpalette")
+                            .bold()
+                            .font(.title)
+                            .foregroundColor(Color("lightBlue"))
+                    }
+                    
+                   
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "trophy")
+                            .bold()
+                            .font(.title)
+                            .foregroundColor(Color("lightBlue"))
+                    }
+                    
+                    
+                    
+                    NavigationLink {
+                       SettingAppView()
+                            .navigationTitle("Setting")
+                            .navigationBarTitleDisplayMode(.inline)
+                    }
+                   
+                    label: {
+                        Image(systemName: "gearshape")
+                            .bold()
+                            .font(.title)
+                            .foregroundColor(Color("lightBlue"))
+                    }
+                    
+                    
+                    
+                }
+                .padding(.horizontal)
                 Spacer()
-                Button {
-                    
-                } label: {
-                    Image(systemName: "trophy")
-                        .bold()
-                        .font(.title)
-                        .foregroundColor(Color("lightBlue"))
-                }
-                Button {
-                    
-                } label: {
-                    Image(systemName: "gearshape")
-                        .bold()
-                        .font(.title)
-                        .foregroundColor(Color("lightBlue"))
-                }
             }
-            .padding(.horizontal)
-            Spacer()
-        }
     }
 }

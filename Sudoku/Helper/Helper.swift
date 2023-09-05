@@ -25,3 +25,13 @@ func vibrate(){
     // Trigger the impact feedback
     impactFeedback.impactOccurred()
 }
+
+func convertToTimer(_ time: Int) -> String{
+    let minute: Int = time/60
+    let second: Int =  time%60
+    
+    let minuteInString = minute >= 10 ? String(minute) : "0\(minute)"
+    let secondInstring = second >= 10 ? String(second) : "0\(second)"
+    
+    return  "\(minuteInString):\(secondInstring)"
+}

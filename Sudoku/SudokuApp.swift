@@ -10,10 +10,15 @@ import SwiftUI
 @main
 struct SudokuApp: App {
     @StateObject var storageObject = StorageObject()
+    @StateObject var soundStorage = SoundDataStorage()
+    @StateObject var userHistoryStorage = UserHistory()
     var body: some Scene {
         WindowGroup {
-            FrontView()
+            AppView()
                 .environmentObject(storageObject)
+                .environmentObject(soundStorage)
+                .environmentObject(userHistoryStorage)
+            
         }
     }
 }

@@ -19,20 +19,31 @@ struct NumberView: View {
                 Button {
                     if noteState == .off{
                         if currX != -1 && currY != -1{
-                            
                             //check if enter number in empty field
                             if storageObject.preFilledArray[currX][currY] == -1{
-                                storageObject.currArray[currX][currY] = num
-                                
-                                //reset the color fill cell
-                                storageObject.fillCell(x: currX, y: currY)
-                                if (!storageObject.isValidMove()){
-                                    StorageObject.currMistake += 1
-                                    storageObject.highlightErorCell(x: currX, y: currY)
-                                    vibrate()
+                                if (num != storageObject.currArray[currX][currY]){
+                                    storageObject.errorTextMap[currX][currY] = false
+                                    
+                                    storageObject.currArray[currX][currY] = num
+                                    
+                                    //reset the color fill cell
+                                    storageObject.fillCell(x: currX, y: currY)
+                                    
+                                    if (!storageObject.isValidMove()){
+                                        StorageObject.currMistake += 1
+                                        storageObject.isLoosing()
+                                        storageObject.highlightErorCell(x: currX, y: currY)
+                                        vibrate()
+                                    }else{
+                                        storageObject.isWinning()
+                                        StorageObject.currPoint += storageObject.pointIncrement
+                                    }
                                 }else{
-                                    StorageObject.currPoint += storageObject.pointIncrement
+                                    storageObject.currArray[currX][currY] = -1
                                 }
+                                //reset errorText at coordinate before check again if
+                                //it is valid move or not
+                                
                             }else{
                                 withAnimation(){
                                     vibrate()

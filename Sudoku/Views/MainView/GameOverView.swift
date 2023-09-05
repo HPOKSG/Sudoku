@@ -29,7 +29,8 @@ struct GameOverView: View {
                             .multilineTextAlignment(.center)
                         
                         Button {
-                            
+                            storageObject.gameStatus = .isPlaying
+                            StorageObject.currMistake = 0
                         } label: {
                             Color.black.opacity(0.1)
                                 .opacity(0.9)

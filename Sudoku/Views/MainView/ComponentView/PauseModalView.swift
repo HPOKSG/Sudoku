@@ -16,7 +16,7 @@ struct PauseModalView: View {
                 .opacity(0.4)
                 .edgesIgnoringSafeArea(.all)
             RoundedRectangle(cornerRadius: 20)
-                .fill(.white)
+                .fill(Color("gameOverBackground"))
                 .frame(width: 350,height: 300)
                 .overlay{
                     VStack{
@@ -62,7 +62,9 @@ struct PauseModalView: View {
                         .padding(.horizontal)
                         Spacer()
                         Button {
-                            isPlaying.toggle()
+                            storageObject.gameStatus = .isPlaying
+                            
+                            let _ = print(StorageObject.gameStatusStorage)
                         } label: {
                             Text("Resume Game")
                                 .foregroundColor(.white)

@@ -20,22 +20,31 @@ struct MainView: View {
     var body: some View {
         
         ZStack {
-            
-            if(!isPlaying){
-                PauseModalView(isPlaying: $isPlaying)
-                    .zIndex(1)
-            }
+           Color("mainviewBackground")
+                .edgesIgnoringSafeArea(.all)
             VStack{
-                HeaderView(isPlaying: $isPlaying)
+                HeaderView()
                 GridView(dimension: $dimension, currX: $currX, currY: $currY)
                 ModiferView(noteStatus: $noteStatus, currX: $currX , currY: $currY)
                     .padding([.all,.horizontal])
                 NumberView(noteState: $noteStatus, currX: $currX, currY: $currY, errorPopUP: $errorPopUP)
                 
             }
-            ErrorView()
+            ErrorView(errorMessage: "Can't fill in a pre-filled cell")
                 .position(x: dimension/2, y: errorPopUP ? 100 : -30)
                 .edgesIgnoringSafeArea(.top)
+            
+            if (GameStatus.getGameStatus(StorageObject.gameStatusStorage) == .lost){
+                GameOverView()
+            }
+            if(storageObject.gameStatus == .pause){
+                PauseModalView(isPlaying: $isPlaying)
+                    .zIndex(2)
+            }
+            if(storageObject.gameStatus == .won){
+                VictoryView()
+            }
+            
         }
         .onAppear{
             getSize(dimension: &dimension)
