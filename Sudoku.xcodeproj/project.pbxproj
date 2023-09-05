@@ -12,13 +12,17 @@
 		991150512A965D0B00285E6E /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991150502A965D0B00285E6E /* GridView.swift */; };
 		992D3AE22AA734A500FEE771 /* UserSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D3AE12AA734A500FEE771 /* UserSignUpView.swift */; };
 		992D3AE42AA742F400FEE771 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 992D3AE32AA742F400FEE771 /* AppView.swift */; };
+		992D3AE72AA762AC00FEE771 /* theme.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 992D3AE62AA762AC00FEE771 /* theme.mp3 */; };
 		9933326A2A9E779500DDBEE9 /* PauseModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993332692A9E779500DDBEE9 /* PauseModalView.swift */; };
 		9935D1EE2AA056A50092585C /* SudokuSolution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935D1ED2AA056A50092585C /* SudokuSolution.swift */; };
 		9935D1F02AA064DE0092585C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935D1EF2AA064DE0092585C /* Helper.swift */; };
 		9935D1F22AA09F4B0092585C /* GameDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935D1F12AA09F4B0092585C /* GameDataStorage.swift */; };
 		9935D1F52AA0A79E0092585C /* FrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935D1F42AA0A79E0092585C /* FrontView.swift */; };
+		993CF9C92AA7B93000B88CFD /* BatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993CF9C82AA7B93000B88CFD /* BatchView.swift */; };
 		997B73042AA5C4FF00066AA5 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B73032AA5C4FF00066AA5 /* GameOverView.swift */; };
 		997B73062AA5CFF800066AA5 /* ProtocolHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B73052AA5CFF800066AA5 /* ProtocolHelper.swift */; };
+		9981A1522AA776A3000C1DCF /* loosing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9981A1512AA776A2000C1DCF /* loosing.mp3 */; };
+		9981A1542AA777C3000C1DCF /* winning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9981A1532AA777C3000C1DCF /* winning.mp3 */; };
 		99ACE6412A9725FD00F56D15 /* NumberView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ACE6402A9725FD00F56D15 /* NumberView.swift */; };
 		99ACE6432A9729F400F56D15 /* ModiferView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ACE6422A9729F300F56D15 /* ModiferView.swift */; };
 		99ACE6452A972DD400F56D15 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99ACE6442A972DD400F56D15 /* HeaderView.swift */; };
@@ -67,13 +71,17 @@
 		991150502A965D0B00285E6E /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
 		992D3AE12AA734A500FEE771 /* UserSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSignUpView.swift; sourceTree = "<group>"; };
 		992D3AE32AA742F400FEE771 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		992D3AE62AA762AC00FEE771 /* theme.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = theme.mp3; sourceTree = "<group>"; };
 		993332692A9E779500DDBEE9 /* PauseModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PauseModalView.swift; sourceTree = "<group>"; };
 		9935D1ED2AA056A50092585C /* SudokuSolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SudokuSolution.swift; sourceTree = "<group>"; };
 		9935D1EF2AA064DE0092585C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		9935D1F12AA09F4B0092585C /* GameDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataStorage.swift; sourceTree = "<group>"; };
 		9935D1F42AA0A79E0092585C /* FrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontView.swift; sourceTree = "<group>"; };
+		993CF9C82AA7B93000B88CFD /* BatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchView.swift; sourceTree = "<group>"; };
 		997B73032AA5C4FF00066AA5 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		997B73052AA5CFF800066AA5 /* ProtocolHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolHelper.swift; sourceTree = "<group>"; };
+		9981A1512AA776A2000C1DCF /* loosing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loosing.mp3; sourceTree = "<group>"; };
+		9981A1532AA777C3000C1DCF /* winning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winning.mp3; sourceTree = "<group>"; };
 		99ACE6402A9725FD00F56D15 /* NumberView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberView.swift; sourceTree = "<group>"; };
 		99ACE6422A9729F300F56D15 /* ModiferView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModiferView.swift; sourceTree = "<group>"; };
 		99ACE6442A972DD400F56D15 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
@@ -169,8 +177,19 @@
 				9935D1EA2AA049910092585C /* GridView */,
 				997B73032AA5C4FF00066AA5 /* GameOverView.swift */,
 				99AEFB7E2AA646E7009F8690 /* VictoryView.swift */,
+				993CF9C82AA7B93000B88CFD /* BatchView.swift */,
 			);
 			path = MainView;
+			sourceTree = "<group>";
+		};
+		992D3AE52AA7629D00FEE771 /* Music */ = {
+			isa = PBXGroup;
+			children = (
+				9981A1512AA776A2000C1DCF /* loosing.mp3 */,
+				992D3AE62AA762AC00FEE771 /* theme.mp3 */,
+				9981A1532AA777C3000C1DCF /* winning.mp3 */,
+			);
+			path = Music;
 			sourceTree = "<group>";
 		};
 		9935D1E92AA0495B0092585C /* ComponentView */ = {
@@ -246,6 +265,7 @@
 		99EB5BC92A95022800B6A4E6 /* Sudoku */ = {
 			isa = PBXGroup;
 			children = (
+				992D3AE52AA7629D00FEE771 /* Music */,
 				991150462A96385900285E6E /* Object */,
 				991150432A96383F00285E6E /* Views */,
 				991150452A96384C00285E6E /* Helper */,
@@ -387,8 +407,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9981A1522AA776A3000C1DCF /* loosing.mp3 in Resources */,
 				99EB5BD22A95022E00B6A4E6 /* Preview Assets.xcassets in Resources */,
 				99EB5BCF2A95022E00B6A4E6 /* Assets.xcassets in Resources */,
+				992D3AE72AA762AC00FEE771 /* theme.mp3 in Resources */,
+				9981A1542AA777C3000C1DCF /* winning.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +460,7 @@
 				99AEFB7F2AA646E7009F8690 /* VictoryView.swift in Sources */,
 				9935D1F52AA0A79E0092585C /* FrontView.swift in Sources */,
 				99AEFB942AA700FC009F8690 /* StatsDetailView.swift in Sources */,
+				993CF9C92AA7B93000B88CFD /* BatchView.swift in Sources */,
 				997B73062AA5CFF800066AA5 /* ProtocolHelper.swift in Sources */,
 				99AEFB8F2AA6FE92009F8690 /* UserHistory.swift in Sources */,
 				99AEFB962AA7168A009F8690 /* StatTabBarView.swift in Sources */,
@@ -601,6 +625,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sudoku/Preview Content\"";
+				DEVELOPMENT_TEAM = G2W449CRXA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -608,6 +633,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -629,6 +655,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Sudoku/Preview Content\"";
+				DEVELOPMENT_TEAM = G2W449CRXA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -636,6 +663,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

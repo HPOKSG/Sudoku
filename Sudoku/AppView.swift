@@ -1,26 +1,31 @@
-//
-//  AppView.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 05/09/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
 
 import SwiftUI
 
 struct AppView: View {
+    @Environment(\.scenePhase) var scenePhase
     @EnvironmentObject var storageObject : StorageObject
+    @EnvironmentObject var soundStorage : SoundDataStorage
     @EnvironmentObject var userDetailStorage : UserHistory
     @State private var presentingSignUpView = true
     var body: some View {
         ZStack {
             TabView {
                 //display the feature view
-                FrontView()
+                FrontView(isPresentingSignUpView: $presentingSignUpView)
                     .tabItem {
                         Label("Home", systemImage: "house.fill")
-                            .foregroundColor(.blue)
                     }
-    //                .toolbarBackground(theme.primaryColor, for: .tabBar)
                 
                 //display the list view
                 StatTabBarView(user: userDetailStorage.getCurrentUser() ?? user1)
@@ -28,22 +33,24 @@ struct AppView: View {
                     .tabItem {
                         Label("Your Record", systemImage: "person.crop.circle.fill")
                     }
-                    .toolbarBackground(.black, for: .tabBar)
                 
                 TopUserView()
                     .tabItem {
                         Label("Leaderboard", systemImage: "person.3.sequence.fill")
                     }
-                    .toolbarBackground(.black, for: .tabBar)
                 
-                
-               
             }
             if(presentingSignUpView){
                 UserSignUpView(presentingSignUp: $presentingSignUpView)
             }
         }
         .preferredColorScheme(storageObject.theme ? .light : .dark)
+        .onDisappear{
+            soundStorage.pauseMusic(sound: SongTheme.theme.rawValue)
+            soundStorage.pauseMusic(sound: SongTheme.winning.rawValue)
+            soundStorage.pauseMusic(sound: SongTheme.lossing.rawValue)
+            UserHistory.lastUser = userDetailStorage.currentUser
+        }
     }
 }
 

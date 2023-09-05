@@ -1,17 +1,24 @@
-//
-//  FrontView.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 31/08/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
+
 
 import SwiftUI
 
 struct FrontView: View {
     @EnvironmentObject var storageObject : StorageObject
+    @EnvironmentObject var userDetailStorage : UserHistory
     @State private var isPresentingNewGame: Bool = false
     @State private var isPresentingThemeController: Bool = false
-   
+    @Binding var isPresentingSignUpView : Bool
     var body: some View {
         NavigationStack {
             ZStack{
@@ -28,13 +35,20 @@ struct FrontView: View {
                     //continue to play button
                     if(storageObject.gameStatus == .isPlaying){
                         NavigationLink {
-                            MainView()
+                            MainView().onAppear{
+                                isPresentingThemeController = false
+                                userDetailStorage.increaseGameCountWhenContinue(mode: storageObject.mode)
+                            }
                         } label: {
                             ContinueGameButtonView()
                         }
                         
                     }
                     Button {
+                        //in crease game cound when start new game
+                        userDetailStorage.increaseGameCount(mode: storageObject.mode)
+                        isPresentingThemeController = false
+                        //turn off the map selection view
                         withAnimation {
                             isPresentingNewGame.toggle()
                         }
@@ -62,9 +76,10 @@ struct FrontView: View {
                 }
             
                 SettingView(isPresentingThemeController: $isPresentingThemeController)
+                    .disabled(isPresentingSignUpView)
                 
                 ThemeSettingView()
-                    .offset(y: isPresentingThemeController ? -290 : -(UIScreen.main.bounds.height))
+                    .position(isPresentingThemeController ? CGPoint(x:  UIScreen.main.bounds.width - 195, y: 100) : CGPoint(x:  UIScreen.main.bounds.width, y: UIScreen.main.bounds.height))
             }
         }
     }
@@ -72,7 +87,7 @@ struct FrontView: View {
 
 struct FrontView_Previews: PreviewProvider {
     static var previews: some View {
-        FrontView()
+        FrontView(isPresentingSignUpView: .constant(true))
             .environmentObject(StorageObject())
             .environmentObject(SoundDataStorage())
             .environmentObject(UserHistory())

@@ -1,9 +1,15 @@
-//
-//  UserItemView.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 05/09/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
+
 
 import SwiftUI
 
@@ -11,15 +17,28 @@ struct UserItemView: View {
     var user : UserDetail
     var callback : () -> Int
     var body: some View {
-            VStack {
-                VStack (alignment: .leading,spacing: 15){
+        VStack () {
+                VStack (alignment: .leading,spacing: 25){
                     Text("Top \(callback())")
                         .font(.title3)
                     Text("Name: \(user.name.capitalized)")
-                    Text("Game Complete: \(getGameComplete(user:user))")
                     Text("Average Time: \(convertToTimer(user.averageTotalTime))")
+                    Text("Average Score: \(user.averageTotalScore)")
                     HStack{
-                        Text("Average Score: \(user.averageTotalScore)")
+                        HStack(spacing: 0){
+                            Text("Earned Batch: ")
+                            if (user.badge.count > 0){
+                                let badges = user.badge.components(separatedBy: ",")
+                                ForEach(0..<badges.count) { index in
+                                    Image(badges[index])
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 45,height: 45)
+                                }
+                            }else{
+                                Text("None")
+                            }
+                        }
                         Spacer()
                         NavigationLink {
                             StatTabBarView(user: user)

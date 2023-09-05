@@ -1,14 +1,21 @@
-//
-//  GameOverView.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 04/09/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
+
 
 import SwiftUI
 
 struct GameOverView: View {
     @EnvironmentObject var storageObject: StorageObject
+    @EnvironmentObject var soundStorage: SoundDataStorage
     var body: some View {
         ZStack{
             Color.black.opacity(0.3)
@@ -31,6 +38,7 @@ struct GameOverView: View {
                         Button {
                             storageObject.gameStatus = .isPlaying
                             StorageObject.currMistake = 0
+                            let _ = soundStorage.pauseMusic(sound: SongTheme.lossing.rawValue)
                         } label: {
                             Color.black.opacity(0.1)
                                 .opacity(0.9)
@@ -44,12 +52,6 @@ struct GameOverView: View {
                                 }
                             
                         }
-                        Button {
-                            
-                        } label: {
-                            Text("New Game")
-                                .bold()
-                        }
                     }
             }
         }
@@ -61,5 +63,6 @@ struct GameOverView_Previews: PreviewProvider {
     static var previews: some View {
         GameOverView()
             .environmentObject(StorageObject())
+            .environmentObject(SoundDataStorage())
     }
 }

@@ -1,9 +1,14 @@
-//
-//  NoteStorageObject.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 24/08/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
 
 import Foundation
 import SwiftUI
@@ -42,6 +47,12 @@ class StorageObject : ObservableObject{
         }
     }
     
+    @Published var historyMap : [[Int]]{
+        didSet{
+            Self.historyMapStorage = historyMap.convertToFlatString()
+        }
+    }
+    
     
     @Published var mode: GameMode{
         didSet{
@@ -77,6 +88,8 @@ class StorageObject : ObservableObject{
     @AppStorage ("errorTextMapStorage") static var errorTextMapStorage = "000000000000000000000000000000000000000000000000000000000000000000000000000000000"
     
     @AppStorage ("preFilledArrayStorage") static var preFilledArrayStorage = "000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+    
+    @AppStorage ("historyMapStorage") static var historyMapStorage = "000000000000000000000000000000000000000000000000000000000000000000000000000000000"
   
     @AppStorage ("currArrayAppStorage") static var currArrayAppStorage = "000000000000000000000000000000000000000000000000000000000000000000000000000000000"
    
@@ -110,6 +123,8 @@ class StorageObject : ObservableObject{
         
         currArray = []
         
+        historyMap = []
+        
         preFilledArray = []
         
         secondsElapsed = Self.secondElapsedStorage
@@ -119,6 +134,8 @@ class StorageObject : ObservableObject{
         gameStatus = GameStatus.getGameStatus(Self.gameStatusStorage)
         
         theme = Self.isLightTheme
+        
+        historyMap = Self.historyMapStorage.convertStringToNestedArray()
         
         if Self.noteStorageArrayAppStorage.count > 0{
             noteStorageArray = Self.noteStorageArrayAppStorage.convertStringToNestedArrayComplex()
@@ -227,6 +244,8 @@ class StorageObject : ObservableObject{
         
         Self.secondElapsedStorage = 0
         
+        Self.preFilledArrayStorage = map
+        
         gameStatus = .isPlaying
         
         secondsElapsed = 0
@@ -247,13 +266,36 @@ class StorageObject : ObservableObject{
         
         preFilledArray = map.convertStringToNestedArray()
         
-        Self.preFilledArrayStorage = map
-        
         currArray = map.convertStringToNestedArray()
+        
+        historyMap = map.convertStringToNestedArray()
     }
     
     func setGameStatus(_ value: GameStatus){
         Self.gameStatusStorage = value.rawValue
+    }
+    
+    func isNewValidMove(x : Int, y : Int) -> Bool{
+        if historyMap[x][y] == -1{
+            historyMap[x][y] = currArray [x][y]
+            return true
+        }
+        return false
+    }
+    
+    func countCurrentNum(num : Int) -> Bool{
+        var count  = 0
+        for i in  0..<9{
+            for j in 0..<9{
+                if currArray[i][j] == num{
+                    count += 1
+                }
+                if count == 9{
+                    return true
+                }
+            }
+        }
+        return false
     }
     
     func convertToTimer() -> String{

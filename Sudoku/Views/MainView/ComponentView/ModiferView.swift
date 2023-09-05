@@ -1,9 +1,15 @@
-//
-//  ModiferView.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 24/08/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
+
 
 import SwiftUI
 
@@ -14,7 +20,7 @@ struct ModiferView: View {
     @Binding var currY: Int
     
     var body: some View {
-        HStack{
+        HStack(spacing: UIScreen.main.bounds.width/4){
             
             Button {
                 if noteStatus == .on{
@@ -35,7 +41,8 @@ struct ModiferView: View {
             } label: {
                 ModiferItemView(title: "Erase", imgName: "eraser.line.dashed")
             }
-            Spacer()
+        
+           
             Button {
                 noteStatus = noteStatus == .off ? .on : .off
             } label: {
@@ -55,11 +62,6 @@ struct ModiferView: View {
                     
             }
             
-            Spacer()
-            Button {
-            } label: {
-                ModiferItemView(title: "Hint", imgName: "lightbulb")
-            }
         }
     }
 }

@@ -1,15 +1,21 @@
-//
-//  CellView.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 23/08/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
 
 import SwiftUI
 
 struct CellView: View {
     var dimesnion: CGFloat
     var inputArray : [Int] = []
+    var callback : () -> Bool
     var body: some View {
         ZStack{
             Rectangle()
@@ -24,10 +30,13 @@ struct CellView: View {
                                 .frame(width: dimesnion/3, height: dimesnion/3)
                                 .overlay {
                                     let current = col+1 + (row*3)
-                                    Text(inputArray.contains(current) ? "\(current)" : "")
-                                        .foregroundColor(Color.black.opacity(0.5))
-                                        .font(.caption)
-                                        .bold()
+                                    if callback(){
+                                        Text(inputArray.contains(current) ? "\(current)" : "")
+                                            .foregroundColor(Color("prefilledText"))
+                                            .font(.caption)
+                                            .bold()
+                                    }
+                                    
                                 }
                         }
                     }
@@ -44,6 +53,6 @@ struct CellView: View {
 struct CellView_Previews: PreviewProvider {
     
     static var previews: some View {
-        CellView(dimesnion: 50, inputArray: [1,2,3])
+        CellView(dimesnion: 50, inputArray: [1,2,3], callback: {return true})
     }
 }

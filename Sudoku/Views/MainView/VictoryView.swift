@@ -1,15 +1,22 @@
-//
-//  VictoryView.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 05/09/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
+
 
 import SwiftUI
 
 struct VictoryView: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var storageObject : StorageObject
+    @EnvironmentObject var soundStorage : SoundDataStorage
     @State var isPresentingNewGame : Bool = false
     var body: some View {
         ZStack{
@@ -40,6 +47,7 @@ struct VictoryView: View {
                 }
                 
                 Button{
+                    let _ = soundStorage.pauseMusic(sound: SongTheme.winning.rawValue)
                     presentationMode.wrappedValue.dismiss() 
                 }label: {
                     Color.clear
@@ -64,6 +72,7 @@ struct VictoryView_Previews: PreviewProvider {
     static var previews: some View {
         VictoryView()
             .environmentObject(StorageObject())
+            .environmentObject(SoundDataStorage())
     }
 }
 

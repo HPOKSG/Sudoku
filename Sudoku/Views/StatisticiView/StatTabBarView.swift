@@ -1,9 +1,15 @@
-//
-//  StatTabBarView.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 05/09/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
+
 
 import SwiftUI
 
@@ -11,7 +17,6 @@ struct StatTabBarView: View {
     var user : UserDetail
     @State private var selectedTab = 0
     var body: some View {
-        NavigationView {
             VStack {
                 // Custom Tab Bar
                 HStack {
@@ -51,12 +56,25 @@ struct StatTabBarView: View {
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             }// Ensure content doesn't overlap status bar
             // Set navigation title
-        }
+        
     }
 }
 
 struct StatTabBarView_Previews: PreviewProvider {
     static var previews: some View {
         StatTabBarView(user: user1)
+    }
+}
+struct TabBarButton: View {
+    let title: String
+    let isSelected: Bool
+    let action: () -> Void
+
+    var body: some View {
+        Button(action: action) {
+            Text(title)
+                .font(isSelected ? .headline : .subheadline)
+                .foregroundColor(isSelected ? .blue : .gray)
+        }
     }
 }

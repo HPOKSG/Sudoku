@@ -1,9 +1,15 @@
-//
-//  NumberView.swift
-//  Sudoku
-//
-//  Created by Hữu Phước  on 24/08/2023.
-//
+/*
+ RMIT University Vietnam
+ Course: COSC2659 iOS Development
+ Semester: 2023B
+ Assessment: Assignment 1
+ Author: Dinh Gia Huu Phuoc
+ ID: s3878270
+ Created  date: 25/08/2023
+ Last modified: 06/09/2023
+ Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
+ */
+
 
 import SwiftUI
 
@@ -31,12 +37,15 @@ struct NumberView: View {
                                     
                                     if (!storageObject.isValidMove()){
                                         StorageObject.currMistake += 1
+                                        StorageObject.currPoint -= storageObject.pointIncrement
                                         storageObject.isLoosing()
                                         storageObject.highlightErorCell(x: currX, y: currY)
                                         vibrate()
                                     }else{
                                         storageObject.isWinning()
-                                        StorageObject.currPoint += storageObject.pointIncrement
+                                        if storageObject.isNewValidMove(x: currX, y: currY){
+                                            StorageObject.currPoint += storageObject.pointIncrement
+                                        }
                                     }
                                 }else{
                                     storageObject.currArray[currX][currY] = -1
@@ -62,9 +71,21 @@ struct NumberView: View {
                         }
                     }
                 } label: {
-                    Text("\(num)")
-                        .foregroundColor(noteState == .on ? Color("gray") : Color("numColor"))
-                        .font(.system(size:42))
+                    if noteState == .on{
+                        if storageObject.countCurrentNum(num: num){
+                            Text(" ")
+                                .disabled( storageObject.countCurrentNum(num: num))
+                        }else{
+                            Text("\(num)")
+                                .foregroundColor(noteState == .on ? Color("gray") : Color("numColor"))
+                                .font(.system(size:42))
+                        }
+                    }else{
+                        Text("\(num)")
+                            .foregroundColor(noteState == .on ? Color("gray") : Color("numColor"))
+                            .font(.system(size:42))
+                    }
+                   
                 }
                 
             }
@@ -75,5 +96,6 @@ struct NumberView: View {
 struct NumberView_Previews: PreviewProvider {
     static var previews: some View {
         NumberView(noteState: .constant(.on), currX: .constant(0), currY: .constant(0), errorPopUP: .constant(false))
+            .environmentObject(StorageObject())
     }
 }
