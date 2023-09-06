@@ -37,14 +37,14 @@ struct VictoryView: View {
             
             VStack(spacing: 20) {
                 // Title label for level completion
-                Text("Level Completed!")
+                Text(soundStorage.language ? "Level Completed!" : "Thắng!")
                     .bold()
                     .font(.system(size: 42))
                     .foregroundColor(.white)
                 
                 VStack {
                     // Display difficulty level
-                    StatisticItemView(imageName: "ranking", title: "Difficulty", description: storageObject.mode.rawValue.capitalized)
+                    StatisticItemView(imageName: "ranking", title: soundStorage.language ?"Difficulty" : "Mức Độ" , description: soundStorage.language ? storageObject.mode.rawValue.capitalized : storageObject.mode.vietnamese)
                     
                     // Divider line
                     Divider()
@@ -52,7 +52,7 @@ struct VictoryView: View {
                         .padding(.horizontal, 40)
                     
                     // Display score
-                    StatisticItemView(imageName: "scoreIcon", title: "Score", description: "\(StorageObject.currPoint)")
+                    StatisticItemView(imageName: "scoreIcon", title: soundStorage.language ? "Score" : "Điểm", description: "\(StorageObject.currPoint)")
                     
                     // Divider line
                     Divider()
@@ -60,7 +60,7 @@ struct VictoryView: View {
                         .padding(.horizontal, 40)
                     
                     // Display time
-                    StatisticItemView(imageName: "timerIcon", title: "Time", description: storageObject.convertToTimer())
+                    StatisticItemView(imageName: "timerIcon", title: soundStorage.language ? "Time" : "Thời Gian", description: storageObject.convertToTimer())
                 }
                 .padding(.horizontal)
                 .overlay {
@@ -80,7 +80,7 @@ struct VictoryView: View {
                         .clipShape(Capsule())
                         .shadow(radius: 10, y: 3)
                         .overlay {
-                            Text("Main View")
+                            Text(soundStorage.language ? "Main View" : "Màn Hình Chính")
                                 .foregroundColor(Color.white)
                                 .bold()
                                 .font(.title2)

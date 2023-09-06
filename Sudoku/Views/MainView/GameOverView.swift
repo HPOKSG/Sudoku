@@ -33,12 +33,12 @@ struct GameOverView: View {
                 .overlay {
                     VStack(spacing: 20) {
                         // Game over title
-                        Text("Game Over")
+                        Text(soundStorage.language ? "Game Over" : "Hết Game")
                             .bold()
                             .font(.title2)
                         
                         // Message about mistakes and losing the game
-                        Text("You have made \(storageObject.maxAttemp) mistakes and lost this game")
+                        Text(soundStorage.language ? "You have made \(storageObject.maxAttemp) mistakes and lost this game" : "Bạn đã sai \(storageObject.maxAttemp) lượt và đã thua cuộc" )
                             .font(.footnote)
                             .padding(.horizontal)
                             .bold()
@@ -58,7 +58,7 @@ struct GameOverView: View {
                                 .clipShape(Capsule())
                                 .padding(.horizontal)
                                 .overlay {
-                                    Text("Second Chance")
+                                    Text(soundStorage.language ? "Second Chance" : "Chơi Lại")
                                         .bold()
                                         .foregroundColor(Color("gray"))
                                 }
@@ -76,7 +76,7 @@ struct GameOverView: View {
                                 .clipShape(Capsule())
                                 .padding(.horizontal)
                                 .overlay {
-                                    Text("Main")
+                                    Text(soundStorage.language ? "Main" : "Màn Hình Chính")
                                         .bold()
                                         .foregroundColor(Color("gray"))
                                 }

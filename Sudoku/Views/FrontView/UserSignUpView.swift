@@ -14,6 +14,7 @@
 import SwiftUI
 
 struct UserSignUpView: View {
+    @EnvironmentObject var soundStorage: SoundDataStorage // Access UserHistory
     @EnvironmentObject var userDetailStorageObject: UserHistory // Access UserHistory from the environment
     @EnvironmentObject var storageObject: StorageObject // Access StorageObject from the environment
     @State var isPresentingError: Bool = false // State to control error presentation
@@ -26,11 +27,11 @@ struct UserSignUpView: View {
                 .edgesIgnoringSafeArea(.all) // Ignore safe area edges
             
             VStack(alignment: .leading, spacing: 25) {
-                Text("New User") // Title: "New User"
+                Text(soundStorage.language ? "New User" : "Người Chơi Mới") // Title: "New User"
                     .font(.title2) // Set font size
                     .bold() // Apply bold font style
                 
-                TextField("Please Enter Name...", text: $userDetailStorageObject.currentUser) // Text field for user's name
+                TextField(soundStorage.language ? "Please Enter Name..." : "Xin Mời Nhập Tên...", text: $userDetailStorageObject.currentUser) // Text field for user's name
                     .background() // Apply background
                 
                 Button {
@@ -61,7 +62,7 @@ struct UserSignUpView: View {
                 } label: {
                     HStack(alignment: .center) {
                         Spacer()
-                        Text("Submit") // Submit button label
+                        Text(soundStorage.language ? "Submit" : "Đăng Kí") // Submit button label
                             .foregroundColor(Color(storageObject.theme ? .black : .white)) // Set text color based on theme
                             .bold() // Apply bold font style
                             .padding(.all) // Add padding
@@ -73,7 +74,7 @@ struct UserSignUpView: View {
                     }
                 }
                 
-                Text("Old User: Please Select Your Name") // Instructions for old users
+                Text(soundStorage.language ? "Old User: Please Select Your Name" : "Đã Đăng Kí: Hãy Chọn Tài Khoản") // Instructions for old users
                     .font(.title3) // Set font size
                     .bold() // Apply bold font style
                 
@@ -121,6 +122,7 @@ struct UserSignUpView_Previews: PreviewProvider {
     static var previews: some View {
         UserSignUpView(presentingSignUp: .constant(true))
             .environmentObject(UserHistory())
+            .environmentObject(SoundDataStorage())
             .environmentObject(StorageObject())
     }
 }

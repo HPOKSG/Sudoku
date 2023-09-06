@@ -37,6 +37,7 @@ struct StatsDetailView_Previews: PreviewProvider {
     static var previews: some View {
         // Preview the StatsDetailView with sample data for user1 in hard mode.
         StatsDetailView(userDetail: user1, mode: .hard)
+            .environmentObject(SoundDataStorage())
     }
 }
 
@@ -72,24 +73,25 @@ struct StatItemView: View {
 
 
 struct GameStatSection: View {
+    @EnvironmentObject var soundStorage : SoundDataStorage
     var user: UserDetail
     var mode: GameMode
     @State var data: [Int] = [1, 2, 3] // Placeholder data
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Games")
+            Text(soundStorage.language ? "Games" : "Trò Chơi")
                 .bold()
                 .font(.title2)
             
             // Display the number of games started.
-            StatItemView(image: "sudoku", title: "Game Started", value: data[0] == 0 ? "-" : "\(data[0])")
+            StatItemView(image: "sudoku", title: soundStorage.language ? "Game Started" : "Game Đã Chơi", value: data[0] == 0 ? "-" : "\(data[0])")
             
             // Display the number of games won.
-            StatItemView(image: "gameWon", title: "Game Won", value: data[1] == 0 ? "-" : "\(data[1])")
+            StatItemView(image: "gameWon", title: soundStorage.language ? "Game Won" : "Game Đã Thắng", value: data[1] == 0 ? "-" : "\(data[1])")
             
             // Display the win rate (percentage of games won).
-            StatItemView(image: "winrate", title: "Win Rate", value: data[2] == 0 ? "-" : "\(data[2])%")
+            StatItemView(image: "winrate", title: soundStorage.language ? "Win Rate" : "Tỉ Lệ Thắng", value: data[2] == 0 ? "-" : "\(data[2])%")
         }.onAppear {
             // Load data based on the selected game mode.
             getData()
@@ -115,21 +117,22 @@ struct GameStatSection: View {
 }
 
 struct TimeStatSection: View {
+    @EnvironmentObject var soundStorage : SoundDataStorage
     var user: UserDetail
     var mode: GameMode
     @State var data: [Int] = [1, 2] // Placeholder data
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Time")
+            Text(soundStorage.language ? "Time" : "Thời Gian")
                 .bold()
                 .font(.title2)
             
             // Display the best time.
-            StatItemView(image: "bestTime", title: "Best Time", value: data[0] == 0 ? "-" : convertToTimer(data[0]))
+            StatItemView(image: "bestTime", title: soundStorage.language ? "Best Time" : "Thời Gian Nhanh Nhất", value: data[0] == 0 ? "-" : convertToTimer(data[0]))
             
             // Display the average time.
-            StatItemView(image: "averageTime", title: "Average Time", value: data[1] == 0 ? "-" : convertToTimer(data[1]))
+            StatItemView(image: "averageTime", title: soundStorage.language ? "Average Time" : "Thời Gian Trung Bình", value: data[1] == 0 ? "-" : convertToTimer(data[1]))
         }.onAppear {
             // Load data based on the selected game mode.
             getData()
@@ -149,21 +152,22 @@ struct TimeStatSection: View {
 }
 
 struct ScoreStatSection: View {
+    @EnvironmentObject var soundStorage : SoundDataStorage
     var user: UserDetail
     var mode: GameMode
     @State var data: [Int] = [1, 2] // Placeholder data
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Score")
+            Text(soundStorage.language ? "Score" : "Điểm")
                 .bold()
                 .font(.title2)
             
             // Display the best score.
-            StatItemView(image: "bestScore", title: "Best Score", value: data[0] == 0 ? "-" : "\(data[0])")
+            StatItemView(image: "bestScore", title: soundStorage.language ? "Best Score" : "Điểm Cao Nhất", value: data[0] == 0 ? "-" : "\(data[0])")
             
             // Display the average score.
-            StatItemView(image: "averageScore", title: "Average Score", value: data[1] == 0 ? "-" : "\(data[1])")
+            StatItemView(image: "averageScore", title: soundStorage.language ? "Average Score" : "Điểm Trung Bình", value: data[1] == 0 ? "-" : "\(data[1])")
         }.onAppear {
             // Load data based on the selected game mode.
             getData()

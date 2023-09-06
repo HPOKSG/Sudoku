@@ -400,6 +400,18 @@ enum GameMode : String{
         return .none
     }
     
+    var vietnamese: String {
+            switch self {
+            case .easy:
+                return "Dễ"
+            case .medium:
+                return "Trung Bình"
+            case .hard:
+                return "Khó"
+            case .none:
+                return "Không"
+            }
+    }
     case easy = "Easy"
     case medium = "Medium"
     case hard = "Hard"

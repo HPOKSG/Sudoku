@@ -13,6 +13,7 @@
 import SwiftUI
 
 struct BadgeView: View {
+    @EnvironmentObject var soundStorage : SoundDataStorage
     // MARK: - Properties
     
     // The badge to display
@@ -24,7 +25,7 @@ struct BadgeView: View {
         ZStack {
             HStack {
                 // Display the badge name
-                Text(badge.name)
+                Text(soundStorage.language ? badge.name : badge.vietnamese)
                     .font(.largeTitle)
                     .bold()
                     .foregroundColor(.white)
@@ -46,5 +47,6 @@ struct BadgeView: View {
 struct BatchView_Previews: PreviewProvider {
     static var previews: some View {
         BadgeView(badge: BadgeImage.allHard)
+            .environmentObject(SoundDataStorage())
     }
 }

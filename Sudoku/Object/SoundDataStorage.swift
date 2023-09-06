@@ -31,6 +31,15 @@ class SoundDataStorage: ObservableObject{
         }
     }
     
+    @Published var language : Bool{
+        didSet{
+            Self.languageStorage = language
+        }
+    }
+    
+    //Declare Appstorage to store the data of soundON variable
+    @AppStorage ("languageStorage") static var languageStorage = true
+    
     //Declare Appstorage to store the data of soundON variable
     @AppStorage ("isSoundOnStorage") static var isSoundOnStorage = true
     
@@ -43,6 +52,7 @@ class SoundDataStorage: ObservableObject{
     // init the Object
     init() {
         soundOn = Self.isSoundOnStorage
+        language = Self.languageStorage
         vibrationOn = Self.isVibrationStorage
         playSound(sound: SongTheme.theme.rawValue)
     }

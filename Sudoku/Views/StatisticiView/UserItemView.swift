@@ -15,6 +15,7 @@ import SwiftUI
 
 // A view representing an item for displaying user statistics and details.
 struct UserItemView: View {
+    @EnvironmentObject var soundStorage : SoundDataStorage
     var user: UserDetail
     var callback: () -> Int
     
@@ -22,22 +23,22 @@ struct UserItemView: View {
         VStack() {
             VStack(alignment: .leading, spacing: 25) {
                 // Display the user's ranking.
-                Text("Top \(callback())")
+                Text(soundStorage.language ? "Top \(callback())" :"Vị trí số \(callback())")
                     .font(.title3)
                 
                 // Display the user's name.
-                Text("Name: \(user.name.capitalized)")
+                Text(soundStorage.language ? "Name: \(user.name.capitalized)" : "Tên: \(user.name.capitalized)" )
                 
                 // Display the user's average time.
-                Text("Average Time: \(convertToTimer(user.averageTotalTime))")
+                Text(soundStorage.language ? "Average Time: \(convertToTimer(user.averageTotalTime))" : "Thời Gian Trunh Bình: \(convertToTimer(user.averageTotalTime))")
                 
                 // Display the user's average score.
-                Text("Average Score: \(user.averageTotalScore)")
+                Text(soundStorage.language ? "Average Score: \(user.averageTotalScore)": "Điểm Trung Bình: \(user.averageTotalScore)")
                 
                 HStack {
                     HStack(spacing: 0) {
-                        Text("Earned Batch: ")
-                        
+                        Text(soundStorage.language ? "Earned Batch: " : "Huy Hiệu: ")
+                        Spacer()
                         // Display the user's earned badges.
                         if user.badge.count > 0 {
                             let badges = user.badge.components(separatedBy: ",")
@@ -63,7 +64,6 @@ struct UserItemView: View {
                         Text("View Detail")
                             .foregroundColor(.black)
                             .padding(.all, 5)
-                            .padding(.horizontal)
                             .background(Color("gray"))
                             .clipShape(Capsule())
                     }
@@ -91,6 +91,7 @@ struct UserItemView_Previews: PreviewProvider {
         UserItemView(user: user1, callback: { () -> Int in
             return 1
         })
+        .environmentObject(SoundDataStorage())
     }
 }
 

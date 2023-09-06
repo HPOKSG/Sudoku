@@ -337,6 +337,24 @@ enum BadgeImage : String{
             }
         }
     
+    var vietnamese: String {
+        switch self {
+        case .allEasy:
+            return "Nhà Giải Sudoku"
+        case .allHard:
+            return "Chuyên Gia Bí Ẩn Tinh Mắt"
+        case .allMedium:
+            return "Thần Đồng Xử Lý Ô Số"
+        case .fast:
+            return "Thần Tốc Sudoku"
+        case .firstGame:
+            return "Chiến Thắng Của Tân Binh"
+        case .firstGameHard:
+            return "Samurai Sudoku Siêu Khó"
+        }
+    }
+
+    
     case allEasy = "allEasy"
     case allHard = "allHard"
     case allMedium = "allMedium"

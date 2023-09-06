@@ -17,7 +17,7 @@ import SwiftUI
 struct StatTabBarView: View {
     var user: UserDetail
     @State private var selectedTab = 0
-    
+    @EnvironmentObject var soundStorage : SoundDataStorage
     var body: some View {
         VStack {
             // Custom Tab Bar
@@ -25,7 +25,7 @@ struct StatTabBarView: View {
                 Spacer()
                 
                 // Tab button for the "Easy" game mode.
-                TabBarButton(title: "Easy", isSelected: selectedTab == 0) {
+                TabBarButton(title: soundStorage.language ? "Easy" : "Dễ", isSelected: selectedTab == 0) {
                     withAnimation {
                         selectedTab = 0
                     }
@@ -34,7 +34,7 @@ struct StatTabBarView: View {
                 Spacer()
                 
                 // Tab button for the "Medium" game mode.
-                TabBarButton(title: "Medium", isSelected: selectedTab == 1) {
+                TabBarButton(title: soundStorage.language ? "Medium" : "Trung Bình", isSelected: selectedTab == 1) {
                     withAnimation {
                         selectedTab = 1
                     }
@@ -43,7 +43,7 @@ struct StatTabBarView: View {
                 Spacer()
                 
                 // Tab button for the "Hard" game mode.
-                TabBarButton(title: "Hard", isSelected: selectedTab == 2) {
+                TabBarButton(title: soundStorage.language ? "Hard" : "Khó", isSelected: selectedTab == 2) {
                     withAnimation {
                         selectedTab = 2
                     }
@@ -76,6 +76,7 @@ struct StatTabBarView_Previews: PreviewProvider {
     static var previews: some View {
         // Preview the StatTabBarView with sample user data.
         StatTabBarView(user: user1)
+            .environmentObject(SoundDataStorage())
     }
 }
 

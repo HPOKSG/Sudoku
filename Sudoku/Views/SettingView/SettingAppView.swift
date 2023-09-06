@@ -22,10 +22,14 @@ struct SettingAppView: View {
             Section {
                 VStack {
                     // Toggle switch for enabling/disabling sound.
-                    Toggle("Sound", isOn: $soundStorage.soundOn)
+                    Toggle(soundStorage.language ? "Sound" : "Nhạc", isOn: $soundStorage.soundOn)
                     
                     // Toggle switch for enabling/disabling vibration.
-                    Toggle("Vibration", isOn: $soundStorage.vibrationOn)
+                    Toggle(soundStorage.language ? "Vibration" : "Rung", isOn: $soundStorage.vibrationOn)
+                    
+                    Toggle(soundStorage.language ?  "English/Vietnamese" : "Tiếng Anh / Tiếng Việt", isOn: $soundStorage.language)
+                    
+                    
                 }
             }
         }

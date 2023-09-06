@@ -32,19 +32,19 @@ struct AppView: View {
                 // Display the feature view
                 FrontView(isPresentingSignUpView: $presentingSignUpView)
                     .tabItem {
-                        Label("Home", systemImage: "house.fill")
+                        Label(soundStorage.language ? "Home" : "Nhà", systemImage: "house.fill")
                     }
                 
                 // Display the list view
                 StatTabBarView(user: userDetailStorage.getCurrentUser() ?? user1)
                     .tabItem {
-                        Label("Your Record", systemImage: "person.crop.circle.fill")
+                        Label(soundStorage.language ? "Your Record" : "Lịch Sử", systemImage: "person.crop.circle.fill")
                     }
                 
                 // Display the leaderboard view
                 TopUserView()
                     .tabItem {
-                        Label("Leaderboard", systemImage: "person.3.sequence.fill")
+                        Label(soundStorage.language ?"Leaderboard" : "Bảng Xếp Hạng", systemImage: "person.3.sequence.fill")
                     }
             }
             

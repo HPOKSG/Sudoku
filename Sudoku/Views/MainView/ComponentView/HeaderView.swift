@@ -15,20 +15,21 @@ import SwiftUI
 
 struct HeaderView: View {
     @EnvironmentObject var storageObject: StorageObject
+    @EnvironmentObject var soundStorage : SoundDataStorage
     @State private var timer  = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     var body: some View {
         HStack{
             VStack (alignment: .leading){
                 // Display difficulty level
-                Text("Difficulty")
-                Text(storageObject.mode.rawValue.capitalized)
+                Text(soundStorage.language ?  "Difficulty" : "Mức độ")
+                Text(soundStorage.language ? storageObject.mode.rawValue.capitalized : storageObject.mode.vietnamese)
                     .bold()
             }
             .foregroundColor(Color(hex: 0x6F7785))
             Spacer()
             VStack (){
                 // Display mistake count
-                Text("Mistake")
+                Text(soundStorage.language ?  "Mistake" : "Lỗi")
                 Text("\(StorageObject.currMistake)/\(storageObject.maxAttemp)")
                     .bold()
             }
@@ -36,7 +37,7 @@ struct HeaderView: View {
             Spacer()
             VStack (){
                 // Display current score
-                Text("Score")
+                Text(soundStorage.language ? "Score" : "Điểm")
                 Text("\(StorageObject.currPoint)")
                     .bold()
             }
@@ -45,15 +46,16 @@ struct HeaderView: View {
             HStack {
                 VStack (){
                     // Display elapsed time
-                    Text("Time")
+                    Text(soundStorage.language ? "Time" : "Thời gian")
                     Text(storageObject.convertToTimer())
                         .bold()
                         .onReceive(timer){ firedDate in
                             storageObject.secondsElapsed += 1
                         }
-                        .frame(width: 65)
+                        
                        
                 }
+                .frame(width: 80)
                 .foregroundColor(Color(hex: 0x6F7785))
 
                 Button {
@@ -86,5 +88,6 @@ struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {
         HeaderView()
             .environmentObject(StorageObject())
+            .environmentObject(SoundDataStorage())
     }
 }

@@ -141,6 +141,7 @@ struct GameNameView: View {
 }
 
 struct ContinueGameButtonView: View {
+    @EnvironmentObject var soundStorage : SoundDataStorage
     @EnvironmentObject var storageObject: StorageObject // Access StorageObject
     var body: some View {
         ZStack {
@@ -149,7 +150,7 @@ struct ContinueGameButtonView: View {
                 .clipShape(Capsule()) // Clip the view into a capsule shape
             
                 .overlay {
-                    Text("Continue Game") // Display "Continue Game"
+                    Text(soundStorage.language ? "Continue Game" : "Tiếp Tục Game") // Display "Continue Game"
                         .foregroundColor(.white) // Set text color
                         .bold() // Apply bold font style
                         .font(.title2) // Set font size
@@ -157,7 +158,7 @@ struct ContinueGameButtonView: View {
                     
                     HStack {
                         Image(systemName: "clock") // Display a clock icon
-                        Text("\(storageObject.convertToTimer()) - \(storageObject.mode.rawValue.capitalized)") // Display timer and mode
+                        Text("\(storageObject.convertToTimer()) - \(soundStorage.language ? storageObject.mode.rawValue.capitalized : storageObject.mode.vietnamese)") // Display timer and mode
                     }
                     .padding(.top, 30) // Add top padding
                     .bold() // Apply bold font style
@@ -171,7 +172,7 @@ struct ContinueGameButtonView: View {
 // A view representing a button for starting a new game.
 struct NewGameButtonView: View {
     @EnvironmentObject var storageObject: StorageObject
-    
+    @EnvironmentObject var soundStorage : SoundDataStorage
     var body: some View {
         ZStack {
             Color("newGameColor")
@@ -180,7 +181,7 @@ struct NewGameButtonView: View {
                 .shadow(radius: 10, y: 3)
                 .overlay {
                     // Text label for the "New Game" button.
-                    Text("New Game")
+                    Text(soundStorage.language ? "New Game" : "Game Mới")
                         .foregroundColor(Color("lightBlue"))
                         .bold()
                         .font(.title2)
@@ -192,7 +193,7 @@ struct NewGameButtonView: View {
 // A view representing a button for starting a new game.
 struct HowToPlayButton: View {
     @EnvironmentObject var storageObject: StorageObject
-    
+    @EnvironmentObject var soundStorage : SoundDataStorage
     var body: some View {
         ZStack {
             Color("lightBlue")
@@ -201,7 +202,7 @@ struct HowToPlayButton: View {
                 .shadow(radius: 10, y: 3)
                 .overlay {
                     // Text label for the "New Game" button.
-                    Text("How To Play")
+                    Text(soundStorage.language ? "How To Play" : "Cách Chơi")
                         .foregroundColor(.white)
                         .bold()
                         .font(.title2)

@@ -15,6 +15,7 @@ import SwiftUI
 
 struct ModiferView: View {
     @EnvironmentObject var storageObject: StorageObject
+    @EnvironmentObject var soundStorage: SoundDataStorage
     @Binding var noteStatus: NoteStatus
     @Binding var currX: Int
     @Binding var currY: Int
@@ -40,14 +41,14 @@ struct ModiferView: View {
                     }
                 }
             } label: {
-                ModiferItemView(title: "Erase", imgName: "eraser.line.dashed")
+                ModiferItemView(title: soundStorage.language ? "Erase" : "Xoá", imgName: "eraser.line.dashed")
             }
         
             // Button to toggle notes mode
             Button {
                 noteStatus = noteStatus == .off ? .on : .off
             } label: {
-                ModiferItemView(title: "Notes", imgName: "pencil.tip.crop.circle.badge.plus")
+                ModiferItemView(title: soundStorage.language ? "Notes" : "Ghi Chú", imgName: "pencil.tip.crop.circle.badge.plus")
                     .overlay {
                         RoundedRectangle(cornerRadius: 20.0)
                             .fill(Color(hex: noteStatus == .on ? 0x3359AF : 0x6F7785))
@@ -69,6 +70,7 @@ struct ModiferView_Previews: PreviewProvider {
     static var previews: some View {
         ModiferView(noteStatus: .constant(.off),currX: .constant(-1),currY: .constant(-1))
             .environmentObject(StorageObject())
+            .environmentObject(SoundDataStorage())
     }
 }
 
