@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99084EBD2AA88C860080826B /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99084EBC2AA88C860080826B /* SplashScreenView.swift */; };
 		991150482A964AAD00285E6E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991150472A964AAD00285E6E /* MainView.swift */; };
 		9911504B2A9651D300285E6E /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9911504A2A9651D300285E6E /* CellView.swift */; };
 		991150512A965D0B00285E6E /* GridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 991150502A965D0B00285E6E /* GridView.swift */; };
@@ -67,6 +68,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		99084EBC2AA88C860080826B /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
 		991150472A964AAD00285E6E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		9911504A2A9651D300285E6E /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		991150502A965D0B00285E6E /* GridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridView.swift; sourceTree = "<group>"; };
@@ -275,6 +277,7 @@
 				99EB5BCA2A95022800B6A4E6 /* SudokuApp.swift */,
 				992D3AE32AA742F400FEE771 /* AppView.swift */,
 				99EB5BCC2A95022800B6A4E6 /* ContentView.swift */,
+				99084EBC2AA88C860080826B /* SplashScreenView.swift */,
 				99EB5BCE2A95022E00B6A4E6 /* Assets.xcassets */,
 				99EB5BD02A95022E00B6A4E6 /* Preview Content */,
 			);
@@ -465,6 +468,7 @@
 				9935D1F52AA0A79E0092585C /* FrontView.swift in Sources */,
 				99AEFB942AA700FC009F8690 /* StatsDetailView.swift in Sources */,
 				993CF9C92AA7B93000B88CFD /* BadgeView.swift in Sources */,
+				99084EBD2AA88C860080826B /* SplashScreenView.swift in Sources */,
 				997B73062AA5CFF800066AA5 /* ProtocolHelper.swift in Sources */,
 				99AEFB8F2AA6FE92009F8690 /* UserHistory.swift in Sources */,
 				99AEFB962AA7168A009F8690 /* StatTabBarView.swift in Sources */,

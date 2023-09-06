@@ -19,7 +19,7 @@ struct SudokuApp: App {
     @StateObject var userHistoryStorage = UserHistory()
     var body: some Scene {
         WindowGroup {
-            AppView()
+            SplashScreenView()
                 .environmentObject(storageObject)
                 .environmentObject(soundStorage)
                 .environmentObject(userHistoryStorage)
