@@ -15,6 +15,7 @@ import SwiftUI
 
 struct TopUserView: View {
     @EnvironmentObject var userHistoryStorage: UserHistory
+    @EnvironmentObject var soundStorage: SoundDataStorage
     
     var body: some View {
         NavigationStack {
@@ -30,7 +31,7 @@ struct TopUserView: View {
                     }
                 }
             }
-            .navigationTitle("Top User")
+            .navigationTitle(soundStorage.language ? "Top User" : "Xếp Hạng")
         }
     }
 }
@@ -39,5 +40,6 @@ struct TopUserView_Previews: PreviewProvider {
     static var previews: some View {
         TopUserView()
             .environmentObject(UserHistory())
+            .environmentObject(SoundDataStorage())
     }
 }
