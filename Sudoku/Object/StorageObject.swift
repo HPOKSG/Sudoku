@@ -24,7 +24,11 @@ class StorageObject : ObservableObject{
         }
     }
     
-    @Published var answerArray: [[Int]]
+    @Published var answerArray: [[Int]]{
+        didSet{
+            Self.answerArrayStorage = answerArray.convertToFlatString()
+        }
+    }
     
     // 2D array to track error status for cells
     @Published var errorTextMap: [[Bool]]{

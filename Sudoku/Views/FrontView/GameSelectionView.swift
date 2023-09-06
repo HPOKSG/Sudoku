@@ -20,6 +20,7 @@ struct GameSelectionView: View {
     let levels: [String] = ["Easy", "Medium", "Hard"] // Array of difficulty levels
     
     var body: some View {
+        NavigationStack {
             List {
                 Section {
                     ForEach(0..<levels.count) { index in
@@ -37,9 +38,10 @@ struct GameSelectionView: View {
                 }
             } // Clip the view into a rounded rectangle
             .frame(width: 360, height: 200) // Set the frame dimensions
-        .clipShape(RoundedRectangle(cornerRadius: 15))
+            .clipShape(RoundedRectangle(cornerRadius: 15))
         }
-        
+    }
+    
     
     func getMode(_ mode: String) -> GameMode {
         if (mode == "easy") { return .easy } // Return easy mode

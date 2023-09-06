@@ -32,9 +32,8 @@ class UserHistory: ObservableObject{
     
     @AppStorage ("lastUser") static var lastUser = ""
     
-    //init the UserHistory
+
     init() {
-//        Self.userDetailStorage = UserList()
         userDetail = Self.userDetailStorage
         currentUser = ""
         newBadageAdded = ""
@@ -53,7 +52,6 @@ class UserHistory: ObservableObject{
     //declare storageObject, this will store the list of user in ranking order
     var sortedObjects: [UserDetail] {
         var temp = userDetail
-        
         //return the sorted array
         return temp.sorted { user1, user2 in
             for (label, comparator) in sortingCriteria {
@@ -273,8 +271,10 @@ class UserHistory: ObservableObject{
     
     //update user detail again when they won the map
     func updateUserDetail(mode: GameMode, point: Int, time: Int){
+     
         var index = userDetail.firstIndex { $0.name == currentUser}
         if (time <= 500){
+           
             if (!userDetail[index!].badge.contains(BadgeImage.fast.rawValue)){
                 let _ = print ("add fast badge")
                 userDetail[index!].badge += "\(BadgeImage.fast.rawValue),"
@@ -365,7 +365,7 @@ enum BadgeImage : String{
 
 let user1 = UserDetail(
     id: UUID(),
-    name: "User1",
+    name: "Nguyen",
     totalGameEasy: 5,
     totalGameMedium: 5,
     totalGameHard: 5,
@@ -384,12 +384,12 @@ let user1 = UserDetail(
     averageScoreEasy: 3,
     averageScoreMedium: 4,
     averageScoreHard: 4,
-    badge: "allEasy,firstGameHard,fastIcon"
+    badge: "allEasy,allHard,allMedium"
 )
 
 let user2 = UserDetail(
     id: UUID(),
-    name: "User2",
+    name: "Phuoc",
     totalGameEasy: 2,
     totalGameMedium: 3,
     totalGameHard: 4,
@@ -408,12 +408,12 @@ let user2 = UserDetail(
     averageScoreEasy: 2,
     averageScoreMedium: 3,
     averageScoreHard: 3,
-    badge: "SilverBadge2"
+    badge: "fastIcon,allEasy"
 )
 
 let user3 = UserDetail(
     id: UUID(),
-    name: "User3",
+    name: "An",
     totalGameEasy: 5,
     totalGameMedium: 5,
     totalGameHard: 5,
@@ -432,5 +432,5 @@ let user3 = UserDetail(
     averageScoreEasy: 5,
     averageScoreMedium: 5,
     averageScoreHard: 5,
-    badge: "PlatinumBadge3"
+    badge: "fastIcon,allEasy"
 )

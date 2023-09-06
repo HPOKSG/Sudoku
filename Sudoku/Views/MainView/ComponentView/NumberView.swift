@@ -53,7 +53,7 @@ struct NumberView: View {
                                         if storageObject.isWinning() {
                                             soundStorage.pauseMusic(sound: SongTheme.theme.rawValue)
                                             soundStorage.playSound(sound: SongTheme.winning.rawValue)
-                                            userDetailStorage.updateUserDetail(mode: storageObject.mode, point: StorageObject.currPoint, time: StorageObject.currPoint)
+                                            userDetailStorage.updateUserDetail(mode: storageObject.mode, point: StorageObject.currPoint, time: storageObject.secondsElapsed)
                                         }
                                         if storageObject.isNewValidMove(x: currX, y: currY) {
                                             StorageObject.currPoint += storageObject.pointIncrement
