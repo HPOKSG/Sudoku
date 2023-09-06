@@ -14,41 +14,41 @@ import SwiftUI
 
 struct CellView: View {
     var dimesnion: CGFloat
-    var inputArray : [Int] = []
-    var callback : () -> Bool
+    var inputArray: [Int] = []
+    var callback: () -> Bool
+    
     var body: some View {
-        ZStack{
+        ZStack {
+            // Outer rectangle for the cell
             Rectangle()
                 .stroke(Color.black.opacity(0.3))
-                .frame(width: dimesnion,height: dimesnion)
+                .frame(width: dimesnion, height: dimesnion)
+            
             VStack(spacing: 0) {
-                ForEach(0..<3){ row in
+                ForEach(0..<3) { row in
                     HStack(spacing: 0) {
-                        ForEach(0..<3){ col in
+                        ForEach(0..<3) { col in
                             Rectangle()
                                 .stroke(Color.clear)
                                 .frame(width: dimesnion/3, height: dimesnion/3)
                                 .overlay {
-                                    let current = col+1 + (row*3)
-                                    if callback(){
+                                    let current = col + 1 + (row * 3)
+                                    if callback() {
+                                        // Display numbers within the cell
                                         Text(inputArray.contains(current) ? "\(current)" : "")
                                             .foregroundColor(Color("prefilledText"))
                                             .font(.caption)
                                             .bold()
                                     }
-                                    
                                 }
                         }
                     }
                 }
             }
-                
         }
-        
-        
     }
-    
 }
+
 
 struct CellView_Previews: PreviewProvider {
     

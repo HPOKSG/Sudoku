@@ -13,7 +13,7 @@
 import Foundation
 import SwiftUI
 import UIKit
-
+import AVFAudio
 func getSize(dimension: inout Double){
     if UIDevice.current.userInterfaceIdiom == .phone {
         dimension = ((UIScreen.main.bounds.size.width-10)/9)*9
@@ -21,7 +21,7 @@ func getSize(dimension: inout Double){
         dimension = UIScreen.main.bounds.size.width * 0.8
     }
 }
-func vibrate(){
+func vibrateHelper(){
     let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
 
     // Call the prepare method to "warm up" the generator

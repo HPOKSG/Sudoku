@@ -19,6 +19,7 @@ struct HeaderView: View {
     var body: some View {
         HStack{
             VStack (alignment: .leading){
+                // Display difficulty level
                 Text("Difficulty")
                 Text(storageObject.mode.rawValue.capitalized)
                     .bold()
@@ -26,6 +27,7 @@ struct HeaderView: View {
             .foregroundColor(Color(hex: 0x6F7785))
             Spacer()
             VStack (){
+                // Display mistake count
                 Text("Mistake")
                 Text("\(StorageObject.currMistake)/\(storageObject.maxAttemp)")
                     .bold()
@@ -33,6 +35,7 @@ struct HeaderView: View {
             .foregroundColor(Color(hex: 0x6F7785))
             Spacer()
             VStack (){
+                // Display current score
                 Text("Score")
                 Text("\(StorageObject.currPoint)")
                     .bold()
@@ -41,6 +44,7 @@ struct HeaderView: View {
             Spacer()
             HStack {
                 VStack (){
+                    // Display elapsed time
                     Text("Time")
                     Text(storageObject.convertToTimer())
                         .bold()
@@ -53,6 +57,7 @@ struct HeaderView: View {
                 .foregroundColor(Color(hex: 0x6F7785))
 
                 Button {
+                    // Toggle game status between playing and paused
                     storageObject.gameStatus = storageObject.gameStatus == .isPlaying ? .pause : .isPlaying
                 } label: {
                     Image(systemName: storageObject.gameStatus == .isPlaying ?   "pause.circle.fill": "play.circle.fill" )
@@ -64,8 +69,10 @@ struct HeaderView: View {
         }
         .onChange(of: StorageObject.gameStatusStorage, perform: { newValue in
             if (storageObject.gameStatus == .isPlaying){
+                // Start the timer when the game is playing
                 timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
             }else{
+                // Cancel the timer when the game is paused
                 timer.upstream.connect().cancel()
             }
         })
@@ -73,6 +80,7 @@ struct HeaderView: View {
        
     }
 }
+
 
 struct HeaderView_Previews: PreviewProvider {
     static var previews: some View {

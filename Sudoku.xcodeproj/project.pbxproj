@@ -18,7 +18,8 @@
 		9935D1F02AA064DE0092585C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935D1EF2AA064DE0092585C /* Helper.swift */; };
 		9935D1F22AA09F4B0092585C /* GameDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935D1F12AA09F4B0092585C /* GameDataStorage.swift */; };
 		9935D1F52AA0A79E0092585C /* FrontView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9935D1F42AA0A79E0092585C /* FrontView.swift */; };
-		993CF9C92AA7B93000B88CFD /* BatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993CF9C82AA7B93000B88CFD /* BatchView.swift */; };
+		993CF9C92AA7B93000B88CFD /* BadgeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993CF9C82AA7B93000B88CFD /* BadgeView.swift */; };
+		993CF9CB2AA83C0A00B88CFD /* HowToPlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 993CF9CA2AA83C0A00B88CFD /* HowToPlayView.swift */; };
 		997B73042AA5C4FF00066AA5 /* GameOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B73032AA5C4FF00066AA5 /* GameOverView.swift */; };
 		997B73062AA5CFF800066AA5 /* ProtocolHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997B73052AA5CFF800066AA5 /* ProtocolHelper.swift */; };
 		9981A1522AA776A3000C1DCF /* loosing.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9981A1512AA776A2000C1DCF /* loosing.mp3 */; };
@@ -77,7 +78,8 @@
 		9935D1EF2AA064DE0092585C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		9935D1F12AA09F4B0092585C /* GameDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDataStorage.swift; sourceTree = "<group>"; };
 		9935D1F42AA0A79E0092585C /* FrontView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrontView.swift; sourceTree = "<group>"; };
-		993CF9C82AA7B93000B88CFD /* BatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchView.swift; sourceTree = "<group>"; };
+		993CF9C82AA7B93000B88CFD /* BadgeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeView.swift; sourceTree = "<group>"; };
+		993CF9CA2AA83C0A00B88CFD /* HowToPlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HowToPlayView.swift; sourceTree = "<group>"; };
 		997B73032AA5C4FF00066AA5 /* GameOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverView.swift; sourceTree = "<group>"; };
 		997B73052AA5CFF800066AA5 /* ProtocolHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolHelper.swift; sourceTree = "<group>"; };
 		9981A1512AA776A2000C1DCF /* loosing.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = loosing.mp3; sourceTree = "<group>"; };
@@ -177,7 +179,7 @@
 				9935D1EA2AA049910092585C /* GridView */,
 				997B73032AA5C4FF00066AA5 /* GameOverView.swift */,
 				99AEFB7E2AA646E7009F8690 /* VictoryView.swift */,
-				993CF9C82AA7B93000B88CFD /* BatchView.swift */,
+				993CF9C82AA7B93000B88CFD /* BadgeView.swift */,
 			);
 			path = MainView;
 			sourceTree = "<group>";
@@ -218,6 +220,7 @@
 				9935D1F42AA0A79E0092585C /* FrontView.swift */,
 				99C62C642AA4C3BF002D5B53 /* GameSelectionView.swift */,
 				992D3AE12AA734A500FEE771 /* UserSignUpView.swift */,
+				993CF9CA2AA83C0A00B88CFD /* HowToPlayView.swift */,
 			);
 			path = FrontView;
 			sourceTree = "<group>";
@@ -452,6 +455,7 @@
 				99ACE64D2A97CDB500F56D15 /* ErrorView.swift in Sources */,
 				9935D1EE2AA056A50092585C /* SudokuSolution.swift in Sources */,
 				991150512A965D0B00285E6E /* GridView.swift in Sources */,
+				993CF9CB2AA83C0A00B88CFD /* HowToPlayView.swift in Sources */,
 				99EB5BCB2A95022800B6A4E6 /* SudokuApp.swift in Sources */,
 				99C62C652AA4C3BF002D5B53 /* GameSelectionView.swift in Sources */,
 				99AEFB892AA674CE009F8690 /* SettingAppView.swift in Sources */,
@@ -460,7 +464,7 @@
 				99AEFB7F2AA646E7009F8690 /* VictoryView.swift in Sources */,
 				9935D1F52AA0A79E0092585C /* FrontView.swift in Sources */,
 				99AEFB942AA700FC009F8690 /* StatsDetailView.swift in Sources */,
-				993CF9C92AA7B93000B88CFD /* BatchView.swift in Sources */,
+				993CF9C92AA7B93000B88CFD /* BadgeView.swift in Sources */,
 				997B73062AA5CFF800066AA5 /* ProtocolHelper.swift in Sources */,
 				99AEFB8F2AA6FE92009F8690 /* UserHistory.swift in Sources */,
 				99AEFB962AA7168A009F8690 /* StatTabBarView.swift in Sources */,

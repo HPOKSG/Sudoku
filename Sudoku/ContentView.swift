@@ -1,8 +1,11 @@
 import SwiftUI
-
+import AVFAudio
 struct ContentView: View {
     var body: some View {
         VStack{
+            Button("clickme") {
+                AudioServicesPlaySystemSound(1008);
+            }
             
         }
     }

@@ -13,58 +13,73 @@
 
 import SwiftUI
 
+// A view representing a tab bar for displaying statistics in different game modes.
 struct StatTabBarView: View {
-    var user : UserDetail
+    var user: UserDetail
     @State private var selectedTab = 0
+    
     var body: some View {
-            VStack {
-                // Custom Tab Bar
-                HStack {
-                    Spacer()
-                    TabBarButton(title: "Easy", isSelected: selectedTab == 0) {
-                        withAnimation {
-                            selectedTab = 0
-                        }
-                       
-                    }
-                    Spacer()
-                    TabBarButton(title: "Medium", isSelected: selectedTab == 1) {
-                        withAnimation {
-                            selectedTab = 1
-                        }
-                    }
-                    Spacer()
-                    TabBarButton(title: "Hard", isSelected: selectedTab == 2) {
-                        withAnimation {
-                            selectedTab = 2
-                        }
-                    }
-                    Spacer()
-                }
-                .padding()
+        VStack {
+            // Custom Tab Bar
+            HStack {
+                Spacer()
                 
-                
-                // Content for each tab
-                TabView(selection: $selectedTab) {
-                    StatsDetailView(userDetail: user, mode: .easy)
-                        .tag(0)
-                    StatsDetailView(userDetail: user, mode: .medium)
-                        .tag(1)
-                    StatsDetailView(userDetail: user, mode: .hard)
-                        .tag(2)
+                // Tab button for the "Easy" game mode.
+                TabBarButton(title: "Easy", isSelected: selectedTab == 0) {
+                    withAnimation {
+                        selectedTab = 0
+                    }
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-            }// Ensure content doesn't overlap status bar
-            // Set navigation title
-        
+                
+                Spacer()
+                
+                // Tab button for the "Medium" game mode.
+                TabBarButton(title: "Medium", isSelected: selectedTab == 1) {
+                    withAnimation {
+                        selectedTab = 1
+                    }
+                }
+                
+                Spacer()
+                
+                // Tab button for the "Hard" game mode.
+                TabBarButton(title: "Hard", isSelected: selectedTab == 2) {
+                    withAnimation {
+                        selectedTab = 2
+                    }
+                }
+                
+                Spacer()
+            }
+            .padding()
+            
+            // Content for each tab
+            TabView(selection: $selectedTab) {
+                // Display statistics for the "Easy" game mode.
+                StatsDetailView(userDetail: user, mode: .easy)
+                    .tag(0)
+                
+                // Display statistics for the "Medium" game mode.
+                StatsDetailView(userDetail: user, mode: .medium)
+                    .tag(1)
+                
+                // Display statistics for the "Hard" game mode.
+                StatsDetailView(userDetail: user, mode: .hard)
+                    .tag(2)
+            }
+            .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        }
     }
 }
 
 struct StatTabBarView_Previews: PreviewProvider {
     static var previews: some View {
+        // Preview the StatTabBarView with sample user data.
         StatTabBarView(user: user1)
     }
 }
+
+// A custom button view for tab bar buttons.
 struct TabBarButton: View {
     let title: String
     let isSelected: Bool
@@ -78,3 +93,4 @@ struct TabBarButton: View {
         }
     }
 }
+

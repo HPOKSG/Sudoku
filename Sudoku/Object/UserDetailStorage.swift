@@ -13,8 +13,10 @@
 import Foundation
 
 struct UserDetail: Codable, Identifiable {
+    //declare id for Identifiable
     let id: UUID
     
+    //declare all the field related to the user
     var name: String
     
     var totalGameEasy: Int
@@ -29,33 +31,33 @@ struct UserDetail: Codable, Identifiable {
     
     var totalGameHardWon: Int
 
-    //best time
+    //delcare best time vairables
     var bestTimeEasy:Int
     
     var bestTimeMedium:Int
     
     var bestTimeHard:Int
 
-    //average time
+    //decleare average time variables for different mode
     var averageTimeEasy:Int
     
     var averageTimeMedium:Int
     
     var averageTimeHard:Int
     
-    
+    //declare computed averageToalTime
     var averageTotalTime : Int {
         return (averageTimeEasy + averageTimeMedium + averageTimeHard) / 3
     }
     
-    //best score
+    //declare best score for each mode
     var bestScoreEasy: Int
     
     var bestScoreMedium: Int
     
     var bestScoreHard: Int
     
-    //average score
+    //declare average score
     var averageScoreEasy: Int
     
     var averageScoreMedium: Int
@@ -74,7 +76,10 @@ struct UserDetail: Codable, Identifiable {
     var badge: String
 }
 
+//declare typeAlisas for UserDetail Array
 typealias UserList = [UserDetail]
+
+//declare the extension to store custome struct object
 extension UserList: RawRepresentable {
     public init?(rawValue: String) {
         guard let data = rawValue.data(using: .utf8),

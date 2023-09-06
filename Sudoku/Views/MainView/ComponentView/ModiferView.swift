@@ -14,54 +14,53 @@
 import SwiftUI
 
 struct ModiferView: View {
-    @EnvironmentObject var storageObject : StorageObject
+    @EnvironmentObject var storageObject: StorageObject
     @Binding var noteStatus: NoteStatus
     @Binding var currX: Int
     @Binding var currY: Int
     
     var body: some View {
-        HStack(spacing: UIScreen.main.bounds.width/4){
+        HStack(spacing: UIScreen.main.bounds.width / 4) {
             
+            // Button to erase content
             Button {
-                if noteStatus == .on{
+                if noteStatus == .on {
+                    // If in note mode, pop last item from storage
                     if let _ = storageObject.noteStorageArray[currX][currY].popLast() {
-                        
-                    }else{
-                        
+                        // Handle erasing a note
+                    } else {
+                        // Handle when there's nothing to erase
                     }
-                }else{
+                } else {
+                    // If not in note mode, clear cell content
                     if currX != -1 && currY != -1 {
                         storageObject.currArray[currX][currY] = -1
                         storageObject.errorTextMap[currX][currY] = false
                         storageObject.fillCell(x: currX, y: currY)
                     }
                 }
-                
-                
             } label: {
                 ModiferItemView(title: "Erase", imgName: "eraser.line.dashed")
             }
         
-           
+            // Button to toggle notes mode
             Button {
                 noteStatus = noteStatus == .off ? .on : .off
             } label: {
                 ModiferItemView(title: "Notes", imgName: "pencil.tip.crop.circle.badge.plus")
                     .overlay {
-                        RoundedRectangle(cornerRadius:  20.0)
+                        RoundedRectangle(cornerRadius: 20.0)
                             .fill(Color(hex: noteStatus == .on ? 0x3359AF : 0x6F7785))
-                            .frame(width: 50,height: 30)
+                            .frame(width: 50, height: 30)
                             .overlay {
                                 Text(noteStatus == .on ? "ON" : "OFF")
                                     .foregroundColor(Color.white)
                                     .bold()
                             }
-                            .padding(.bottom,50)
-                            .padding(.leading,50)
+                            .padding(.bottom, 50)
+                            .padding(.leading, 50)
                     }
-                    
             }
-            
         }
     }
 }

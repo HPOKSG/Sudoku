@@ -13,6 +13,7 @@
 
 import Foundation
 extension String{
+    //this function will convert String to nested int array Representation
     func convertStringToNestedArray()->[[Int]]{
         var answer: [[Int]] = []
         for i in stride(from: 0, to: self.count, by: 9) {
@@ -24,6 +25,8 @@ extension String{
         }
         return answer
     }
+    
+    //this function will convert String to nested boolean array Representation
     func convertStringToNestedBoolArray()->[[Bool]]{
         var booleanArray : [[Bool]] = []
         for i in stride(from: 0, to: self.count, by: 9) {
@@ -41,6 +44,8 @@ extension String{
         }
         return booleanArray
     }
+    
+    //this function will convert String to nested array Representation
     func convertStringToNestedArrayComplex()->[[[Int]]]{
         let temp = self
         if let temp = temp.data(using: .utf8) {
@@ -56,7 +61,9 @@ extension String{
     }
    
 }
+
 extension [[Int]]{
+    //this function will convert array to flat string
     func convertToFlatString()->String{
         let flatString = self.flatMap { row in
             row.map { $0 == -1 ? "0" : "\($0)" }
@@ -64,7 +71,9 @@ extension [[Int]]{
         return flatString
     }
 }
+
 extension [[Bool]]{
+    //this function will convert bool array to flat string
     func convertToFlatString()->String{
         let flatString = self.flatMap { row in
             row.map { $0 ? "1" : "0" }
@@ -72,7 +81,9 @@ extension [[Bool]]{
         return flatString
     }
 }
+
 extension [[[Int]]]{
+    //this function will convert array to flat string
     func convertToFlatString()->String{
         var jsonString = "[\n"
         for outerArray in self {

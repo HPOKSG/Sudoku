@@ -10,7 +10,6 @@
  Acknowledgement: COSC2659 Lecture Slides, Apple IOS Development Tutorial
  */
 
-
 import SwiftUI
 
 struct GridView: View {
@@ -22,18 +21,23 @@ struct GridView: View {
     @Binding var currY: Int
     var body: some View {
         ZStack {
+            // Border for the entire grid
             BorderView(dimension: dimension)
+            
             VStack(spacing: 0) {
                 ForEach(0..<3){ outerRow in
                     HStack(spacing: 0) {
                         ForEach(0..<3){ outerCol in
                             ZStack {
+                                // Highlight view for individual cells
                                 HighLightView(dimension: dimension/9, outerRow: outerRow, outerCol: outerCol, callback: getRightColor(x:y:))
+                                
                                 Rectangle()
                                     .stroke(Color.black,lineWidth: 3)
                                     .frame(width: dimension/3, height: dimension/3)
                                     .overlay {
-                                        SquareView(dimension: dimension, outerRow: outerRow, outerCol: outerCol, currX: $currX,currY: $currY)
+                                        // Square view inside each cell
+                                        SquareView(dimension: dimension, outerRow: outerRow, outerCol: outerCol, currX: $currX, currY: $currY)
                                     }
                             }
                         }
@@ -42,11 +46,10 @@ struct GridView: View {
             }
             .background(Color("gridViewBackground"))
         }
-        
     }
     
-    func getRightColor(x: Int, y: Int) -> Color{
-        if storageObject.shadedMap[x][y] == "" {return Color.clear}
+    func getRightColor(x: Int, y: Int) -> Color {
+        if storageObject.shadedMap[x][y] == "" { return Color.clear }
         return Color(storageObject.shadedMap[x][y])
     }
     
@@ -60,6 +63,7 @@ struct GridView: View {
     struct BorderView: View {
         var dimension: CGFloat
         var body: some View {
+            // Border for the entire grid
             Rectangle()
                 .stroke(Color.black,lineWidth: 3)
                 .frame(width: dimension, height: dimension)
@@ -91,10 +95,8 @@ struct GridView: View {
         }
     }
     
-    
-    
     struct SquareView: View {
-        @EnvironmentObject var storageObject : StorageObject
+        @EnvironmentObject var storageObject: StorageObject
         var dimension: CGFloat
         var outerRow: Int
         var outerCol: Int
@@ -109,28 +111,32 @@ struct GridView: View {
                             ForEach(0..<3){ innerCol in
                                 let xCoor = (outerRow*3) + innerRow
                                 let yCoor  = (outerCol*3) + innerCol
-                                GeometryReader{ geometry in
+                                GeometryReader { geometry in
                                     Button {
                                         currX = xCoor
                                         currY = yCoor
                                         storageObject.fillCell(x: xCoor, y: yCoor)
                                     } label: {
-                                        CellView(dimesnion: dimension/9, inputArray: storageObject.noteStorageArray[xCoor][yCoor]){
+                                        // CellView inside the grid square
+                                        CellView(dimesnion: dimension/9, inputArray: storageObject.noteStorageArray[xCoor][yCoor]) {
                                             return storageObject.currArray[xCoor][yCoor] == -1
                                         }
-                                            .overlay {
-                                                let preFilledVal = storageObject.preFilledArray[xCoor][yCoor]
-                                                let playVal = storageObject.currArray[xCoor][yCoor]
-                                                if  preFilledVal != -1{
-                                                    Text("\(preFilledVal)")
-                                                        .font(.largeTitle)
-                                                        .foregroundColor(Color("prefilledText"))
-                                                }else{
-                                                    Text(playVal == -1 ? "" :  "\(playVal)")
-                                                        .font(.largeTitle)
-                                                        .foregroundColor(storageObject.errorTextMap[xCoor][yCoor] ? Color("errorText") : Color("darkBlue"))
-                                                }
+                                        .overlay {
+                                            let _ = print("\(xCoor)   \(yCoor)")
+                                            let preFilledVal = storageObject.preFilledArray[xCoor][yCoor]
+                                            let playVal = storageObject.currArray[xCoor][yCoor]
+                                            if  preFilledVal != -1{
+                                                // Display pre-filled value
+                                                Text("\(preFilledVal)")
+                                                    .font(.largeTitle)
+                                                    .foregroundColor(Color("prefilledText"))
+                                            } else {
+                                                // Display user-entered value
+                                                Text(playVal == -1 ? "" : "\(playVal)")
+                                                    .font(.largeTitle)
+                                                    .foregroundColor(storageObject.errorTextMap[xCoor][yCoor] ? Color("errorText") : Color("darkBlue"))
                                             }
+                                        }
                                     }
                                 }
                             }
@@ -141,4 +147,5 @@ struct GridView: View {
             }
         }
     }
+
 }

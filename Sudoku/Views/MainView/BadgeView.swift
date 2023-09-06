@@ -12,28 +12,39 @@
 
 import SwiftUI
 
-struct BatchView: View {
-    var badge : BadgeImage
+struct BadgeView: View {
+    // MARK: - Properties
+    
+    // The badge to display
+    var badge: BadgeImage
+    
+    // MARK: - Body
+    
     var body: some View {
         ZStack {
-            HStack{
+            HStack {
+                // Display the badge name
                 Text(badge.name)
                     .font(.largeTitle)
                     .bold()
                     .foregroundColor(.white)
+                
+                // Display the badge image
                 Image(badge.rawValue)
             }
             .padding(.all)
-            .background{
+            .background {
+                // Background with rounded rectangle and green color
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color.green.opacity(0.9))
-        }
+            }
         }
     }
 }
 
+
 struct BatchView_Previews: PreviewProvider {
     static var previews: some View {
-        BatchView(badge: BadgeImage.allHard)
+        BadgeView(badge: BadgeImage.allHard)
     }
 }

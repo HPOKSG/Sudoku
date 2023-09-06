@@ -14,6 +14,8 @@ import Foundation
 import SwiftUI
 
 class UserHistory: ObservableObject{
+    
+    //declare the currentUser detail information
     @Published var currentUser: String
     
     @Published var userDetail: [UserDetail]{
@@ -22,17 +24,23 @@ class UserHistory: ObservableObject{
         }
     }
     
+    //declare new Badge to display in winning view
+    @Published var newBadageAdded: String
+    
+    //declare the AppStorage variable to store the currentUserSettting
     @AppStorage ("userDetailStorage") static var userDetailStorage: [UserDetail] = UserList()
     
     @AppStorage ("lastUser") static var lastUser = ""
     
+    //init the UserHistory
     init() {
-//        Self.userDetailStorage = [user1,user2,user3]
+//        Self.userDetailStorage = UserList()
         userDetail = Self.userDetailStorage
         currentUser = ""
+        newBadageAdded = ""
     }
     
-   
+   //delcare the sorting criteria to sort list user
     let sortingCriteria: [(String, (UserDetail, UserDetail) -> Bool)] = [
         ("rankingPoint", { user1, user2 in
             return user1.rankingPoint < user2.rankingPoint
@@ -42,10 +50,11 @@ class UserHistory: ObservableObject{
         })
     ]
 
-    
+    //declare storageObject, this will store the list of user in ranking order
     var sortedObjects: [UserDetail] {
         var temp = userDetail
-
+        
+        //return the sorted array
         return temp.sorted { user1, user2 in
             for (label, comparator) in sortingCriteria {
                 if label == "rankingPoint" {
@@ -67,6 +76,10 @@ class UserHistory: ObservableObject{
             return false // If all criteria are equal, maintain the original order
         }
     }
+    
+    //this function will insert the new user
+    //with given currName with the default
+    //setting of other fields are 0
     func insertNewUser() {
         let newUser = UserDetail(
             id: UUID(),
@@ -103,152 +116,169 @@ class UserHistory: ObservableObject{
     }
     func getCurrentUser() -> UserDetail? {
         // Iterate through userDetail to find the user with the specified userID
-        return userDetail.first { user in
+        var user = userDetail.first { user in
             return user.name == currentUser
         }
+        return user
     }
-
+    
+    //this function increase game count when
+    //user start the name game
     func increaseGameCount(mode: GameMode){
-        var search = userDetail.first { user in
-            user.name == currentUser
-        }
+        var index = userDetail.firstIndex { $0.name == currentUser}
+        //detect the mode and do increment
         if (mode == .easy){
-            search!.totalGameEasy += 1
-        }else  if (mode == .easy){
-            search!.totalGameMedium += 1
+            userDetail[index!].totalGameEasy += 1
+        }else  if (mode == .medium){
+            userDetail[index!].totalGameMedium += 1
         } else{
-            search!.totalGameHard += 1
+            userDetail[index!].totalGameHard += 1
         }
     }
     
+    //this function also increase the game count if
+    //the new user click on the contineu button
     func increaseGameCountWhenContinue(mode: GameMode){
         if currentUser != Self.lastUser{
-            var search = userDetail.first { user in
-                user.name == currentUser
-            }
+            var index = userDetail.firstIndex { $0.name == currentUser}
+            //detect the mode and do increment
             if (mode == .easy){
-                search!.totalGameEasy += 1
+                userDetail[index!].totalGameEasy += 1
             }else  if (mode == .easy){
-                search!.totalGameMedium += 1
+                userDetail[index!].totalGameMedium += 1
             } else{
-                search!.totalGameHard += 1
+                userDetail[index!].totalGameHard += 1
             }
         }
     }
     
+    //update user information after they win easy mode game
     func updateUserEasy(mode: GameMode, point: Int, time: Int){
-        var searchedUser  = userDetail.first { user in
-            user.name == currentUser
-        }!
-        
-        if searchedUser.totalGameEasyWon == 5 {
-            searchedUser.badge += "\(BadgeImage.allEasy.rawValue),"
-        }
+        var index = userDetail.firstIndex { $0.name == currentUser}
         
         //increase the game won count
-        searchedUser.totalGameEasyWon += 1
-        // if the user first Win Easy Mode then just set it
-        if searchedUser.bestTimeEasy == 0 {
-            searchedUser.bestTimeEasy = time
-        }else{
-            // if the new time is sooner than the current best then set it
-            if searchedUser.bestTimeEasy > time{
-                searchedUser.bestTimeEasy = time
-            }
-        }
-        searchedUser.averageTimeEasy = (searchedUser.averageTimeEasy * (searchedUser.totalGameEasy - 1) + time ) / searchedUser.totalGameEasy
+        userDetail[index!].totalGameEasyWon += 1
         
-        if searchedUser.bestScoreEasy == 0 {
-            searchedUser.bestScoreEasy = point
+        if userDetail[index!].totalGameEasyWon == 3{
+            let _ = print ("Add game easy won")
+            userDetail[index!].badge += "\(BadgeImage.allEasy.rawValue),"
+            newBadageAdded += "\(BadgeImage.allEasy.rawValue),"
+        }
+        
+      
+        // if the user first Win Easy Mode then just set it
+        if userDetail[index!].bestTimeEasy == 0 {
+            userDetail[index!].bestTimeEasy = time
         }else{
             // if the new time is sooner than the current best then set it
-            if searchedUser.bestScoreEasy > point{
-                searchedUser.bestScoreEasy = point
+            if userDetail[index!].bestTimeEasy > time{
+                userDetail[index!].bestTimeEasy = time
             }
         }
-        searchedUser.averageScoreEasy = (searchedUser.averageScoreEasy * (searchedUser.totalGameEasy - 1) + point ) / searchedUser.totalGameEasy
+        
+        if userDetail[index!].totalGameEasy > 0{
+            userDetail[index!].averageTimeEasy = (userDetail[index!].averageTimeEasy * (userDetail[index!].totalGameEasy - 1) + time ) / userDetail[index!].totalGameEasy
+            userDetail[index!].averageScoreEasy = (userDetail[index!].averageScoreEasy * (userDetail[index!].totalGameEasy - 1) + point ) / userDetail[index!].totalGameEasy
+        }
+        
+        if userDetail[index!].bestScoreEasy == 0 {
+            userDetail[index!].bestScoreEasy = point
+        }else{
+            // if the new time is sooner than the current best then set it
+            if userDetail[index!].bestScoreEasy > point{
+                userDetail[index!].bestScoreEasy = point
+            }
+        }
+       
     }
     
+    //update user information after they win medium mode game
     func updateUserMedium(mode: GameMode, point: Int, time: Int){
-        var searchedUser  = userDetail.first { user in
-            user.name == currentUser
-        }!
-        
-        if searchedUser.totalGameMedium == 5 {
-            searchedUser.badge += "\(BadgeImage.allMedium.rawValue),"
-        }
+        var index = userDetail.firstIndex { $0.name == currentUser}
         
         //increase the game won count
-        searchedUser.totalGameMediumWon += 1
-        // if the user first Win Easy Mode then just set it
-        if searchedUser.bestTimeMedium == 0 {
-            searchedUser.bestTimeMedium = time
-        }else{
-            // if the new time is sooner than the current best then set it
-            if searchedUser.bestTimeMedium > time{
-                searchedUser.bestTimeMedium = time
-            }
-        }
-        searchedUser.averageTimeMedium = (searchedUser.averageTimeMedium * (searchedUser.totalGameMedium - 1) + time ) / searchedUser.totalGameMedium
+        userDetail[index!].totalGameMediumWon += 1
         
-        if searchedUser.bestScoreMedium == 0 {
-            searchedUser.bestScoreMedium = point
+        if userDetail[index!].totalGameMedium == 3 {
+            userDetail[index!].badge += "\(BadgeImage.allMedium.rawValue),"
+            newBadageAdded += "\(BadgeImage.allMedium.rawValue),"
+        }
+        
+        
+        // if the user first Win Easy Mode then just set it
+        if userDetail[index!].bestTimeMedium == 0 {
+            userDetail[index!].bestTimeMedium = time
         }else{
             // if the new time is sooner than the current best then set it
-            if searchedUser.bestScoreMedium > point{
-                searchedUser.bestScoreMedium = point
+            if userDetail[index!].bestTimeMedium > time{
+                userDetail[index!].bestTimeMedium = time
             }
         }
-        searchedUser.averageScoreMedium = (searchedUser.averageScoreMedium * (searchedUser.totalGameMedium - 1) + point ) / searchedUser.totalGameMedium
+        
+        if userDetail[index!].totalGameMedium > 0 {
+            userDetail[index!].averageScoreMedium = (userDetail[index!].averageScoreMedium * (userDetail[index!].totalGameMedium - 1) + point ) / userDetail[index!].totalGameMedium
+            userDetail[index!].averageTimeMedium = (userDetail[index!].averageTimeMedium * (userDetail[index!].totalGameMedium - 1) + time ) / userDetail[index!].totalGameMedium
+        }
+        
+        if userDetail[index!].bestScoreMedium == 0 {
+            userDetail[index!].bestScoreMedium = point
+        }else{
+            // if the new time is sooner than the current best then set it
+            if userDetail[index!].bestScoreMedium > point{
+                userDetail[index!].bestScoreMedium = point
+            }
+        }
     }
-    
-    func updateUserHard(mode: GameMode, point: Int, time: Int){
-        var searchedUser  = userDetail.first { user in
-            user.name == currentUser
-        }!
         
-        if searchedUser.totalGameHard == 1 {
-            searchedUser.badge += "\(BadgeImage.firstGameHard.rawValue),"
-        }
-        if searchedUser.totalGameHardWon == 5 {
-            searchedUser.badge += "\(BadgeImage.allHard.rawValue),"
+    //update user information after they win hard mode game
+    func updateUserHard(mode: GameMode, point: Int, time: Int){
+        var index = userDetail.firstIndex { $0.name == currentUser}
+        
+        //increase the game won count
+        userDetail[index!].totalGameHard += 1
+        
+        if  userDetail[index!].totalGameHardWon == 5 {
+            userDetail[index!].badge += "\(BadgeImage.allHard.rawValue),"
+            newBadageAdded += "\(BadgeImage.allHard.rawValue),"
         }
     
         //increase the game won count
-        searchedUser.totalGameHardWon += 1
+        userDetail[index!].totalGameHardWon += 1
         // if the user first Win Easy Mode then just set it
-        if searchedUser.bestTimeHard == 0 {
-            searchedUser.bestTimeHard = time
+        if  userDetail[index!].bestTimeHard == 0 {
+            userDetail[index!].bestTimeHard = time
         }else{
             // if the new time is sooner than the current best then set it
-            if searchedUser.bestTimeHard > time{
-                searchedUser.bestTimeHard = time
+            if  userDetail[index!].bestTimeHard > time{
+                userDetail[index!].bestTimeHard = time
             }
         }
-        searchedUser.averageTimeHard = (searchedUser.averageTimeHard * (searchedUser.totalGameHard - 1) + time ) / searchedUser.totalGameHard
         
-        if searchedUser.bestScoreHard == 0 {
-            searchedUser.bestScoreHard = point
+        if  userDetail[index!].totalGameHard > 0 {
+            userDetail[index!].averageTimeHard = ( userDetail[index!].averageTimeHard * ( userDetail[index!].totalGameHard - 1) + time ) /  userDetail[index!].totalGameHard
+            userDetail[index!].averageScoreHard = ( userDetail[index!].averageScoreHard * ( userDetail[index!].totalGameHard - 1) + point ) /  userDetail[index!].totalGameHard
+        }
+        
+        if  userDetail[index!].bestScoreHard == 0 {
+            userDetail[index!].bestScoreHard = point
         }else{
             // if the new time is sooner than the current best then set it
-            if searchedUser.bestScoreHard > point{
-                searchedUser.bestScoreHard = point
+            if  userDetail[index!].bestScoreHard > point{
+                userDetail[index!].bestScoreHard = point
             }
         }
-        searchedUser.averageScoreHard = (searchedUser.averageScoreHard * (searchedUser.totalGameHard - 1) + point ) / searchedUser.totalGameHard
+        
     }
     
     
     //update user detail again when they won the map
     func updateUserDetail(mode: GameMode, point: Int, time: Int){
-        
+        var index = userDetail.firstIndex { $0.name == currentUser}
         if (time <= 500){
-            var searchedUser  = userDetail.first { user in
-                user.name == currentUser
-            }!
-            var badges = searchedUser.name.components(separatedBy: ",")
-            if (!badges.contains(BadgeImage.fast.rawValue)){
-                searchedUser.badge += "\(BadgeImage.fast.rawValue),"
+            if (!userDetail[index!].badge.contains(BadgeImage.fast.rawValue)){
+                let _ = print ("add fast badge")
+                userDetail[index!].badge += "\(BadgeImage.fast.rawValue),"
+                newBadageAdded += "\(BadgeImage.fast.rawValue),"
             }
         }
         
@@ -259,10 +289,36 @@ class UserHistory: ObservableObject{
         }else if mode == .hard{
             updateUserHard(mode: mode, point: point, time: time)
         }
+        let _ = print ("\(userDetail[index!])")
+        let _ = print ("\(newBadageAdded)")
+        
     }
 }
 
+//declare BadgameImage to store badge name with
+//the image name for easy accessing
 enum BadgeImage : String{
+    
+    static func getBadgeView(_ value: String)->BadgeImage{
+        if value ==  BadgeImage.allEasy.rawValue{
+            return .allEasy
+        }else if value ==  BadgeImage.allMedium.rawValue{
+            return .allMedium
+        }
+        else if value ==  BadgeImage.allHard.rawValue{
+            return .allHard
+        }
+        else if value ==  BadgeImage.fast.rawValue{
+            return .fast
+        }
+        else if value ==  BadgeImage.firstGame.rawValue{
+            return .firstGame
+        }
+        else if value ==  BadgeImage.firstGameHard.rawValue{
+            return .firstGameHard
+        }
+        return .fast
+    }
     
     var name: String {
             switch self {
